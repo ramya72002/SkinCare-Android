@@ -10,36 +10,29 @@ const Header = () => {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Icon name="arrow-back" size={30} color="#fff" />
       </TouchableOpacity>
-     </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
-    height: 60,
+    height: 100,
     backgroundColor: '#94499c',
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 20 },
+    // alignItems: 'center',
+    // paddingHorizontal: 10,
+    // elevation: 3,
+    // shadowColor: '#000',
+    // shadowOpacity: 0.4,
+    // shadowRadius: 10,
+    // shadowOffset: { width: 30, height: 80 },
   },
   backButton: {
-    width: 40,
-    height: 100,
+    width: 50,
+    height: 150,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
-    marginTop: 10, // Adjust the button position down
-  },
-  headerText: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#fff',
   },
 });
 

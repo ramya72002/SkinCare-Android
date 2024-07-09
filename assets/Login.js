@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Background from './Background';
 import Btn from './Btn';
@@ -7,10 +7,12 @@ import { darkGreen } from './Constants';
 import Field from './Field';
 import { Picker } from '@react-native-picker/picker';
 
+const { width, height } = Dimensions.get('window');
+
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [contactNumber, setContactNumber] = useState('');
-  const [name, setNAme] = useState('');
+  const [name, setName] = useState('');
   const [preferredLanguage, setPreferredLanguage] = useState('en');
 
   const validateEmail = (email) => {
@@ -38,7 +40,7 @@ const Login = (props) => {
       return;
     }
 
-    const loginData = { email, contactNumber, preferredLanguage,name };
+    const loginData = { email, contactNumber, preferredLanguage, name };
 
     try {
       const response = await fetch('https://backen-skin-care-app.vercel.app/login', {
@@ -75,37 +77,11 @@ const Login = (props) => {
 
   return (
     <Background>
-      <View style={{ alignItems: 'center', width: 460 }}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 64,
-            fontWeight: 'bold',
-            marginVertical: 20,
-          }}>
-          Login
-        </Text>
-        <View
-          style={{
-            backgroundColor: 'white',
-            height: 700,
-            width: 460,
-            borderTopLeftRadius: 130,
-            paddingTop: 100,
-            alignItems: 'center',
-          }}>
-          <Text style={{ fontSize: 40, color: darkGreen, fontWeight: 'bold' }}>
-            Welcome Back
-          </Text>
-          <Text
-            style={{
-              color: 'grey',
-              fontSize: 19,
-              fontWeight: 'bold',
-              marginBottom: 20,
-            }}>
-            Login to your account
-          </Text>
+      <View style={styles.container}>
+        <Text style={styles.loginText}>Login</Text>
+        <View style={styles.formContainer}>
+          <Text style={styles.welcomeText}>Welcome Back</Text>
+          <Text style={styles.loginPromptText}>Login to your account</Text>
           <Field
             placeholder="Email"
             keyboardType={'email-address'}
@@ -118,14 +94,12 @@ const Login = (props) => {
             value={contactNumber}
             onChangeText={setContactNumber}
           />
-          <View style={{ width: '78%', marginVertical: 10 }}>
-            <Text style={{ color: 'grey', fontSize: 16, marginBottom: 5 }}>
-              Preferred Language
-            </Text>
+          <View style={styles.pickerContainer}>
+            <Text style={styles.pickerLabel}>Preferred Language</Text>
             <Picker
               selectedValue={preferredLanguage}
               onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
-              style={{ height: 50, width: '100%' }}
+              style={styles.picker}
             >
               <Picker.Item label="Assamese" value="as" />
               <Picker.Item label="Awadhi" value="awa" />
@@ -161,25 +135,10 @@ const Login = (props) => {
             btnLabel="Login"
             Press={handleLogin}
           />
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-              Don't have an account?{' '}
-            </Text>
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate('Signup')}>
-              <Text
-                style={{
-                  color: darkGreen,
-                  fontWeight: 'bold',
-                  fontSize: 16,
-                }}>
-                Signup
-              </Text>
+          <View style={styles.signupContainer}>
+            <Text style={styles.signupText}>Don't have an account? </Text>
+            <TouchableOpacity onPress={() => props.navigation.navigate('Signup')}>
+              <Text style={styles.signupLinkText}>Signup</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -187,5 +146,63 @@ const Login = (props) => {
     </Background>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    width: width * 0.9, // 90% of screen width
+  },
+  loginText: {
+    color: 'white',
+    fontSize: 0.12 * width, // dynamic font size
+    fontWeight: 'bold',
+    marginVertical: 50,
+  },
+  formContainer: {
+    backgroundColor: 'white',
+    height: height * 0.8, // 80% of screen height
+    width: width * 1, // 90% of screen width
+    borderTopLeftRadius: 180,
+    paddingTop: 90,
+    alignItems: 'center',
+  },
+  welcomeText: {
+    fontSize: 0.09 * width, // dynamic font size
+    color: darkGreen,
+    fontWeight: 'bold',
+  },
+  loginPromptText: {
+    color: 'grey',
+    fontSize: 0.05 * width, // dynamic font size
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  pickerContainer: {
+    width: '78%',
+    marginVertical: 10,
+  },
+  pickerLabel: {
+    color: 'grey',
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  picker: {
+    height: 50,
+    width: '100%',
+  },
+  signupContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  signupText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  signupLinkText: {
+    color: darkGreen,
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+});
 
 export default Login;

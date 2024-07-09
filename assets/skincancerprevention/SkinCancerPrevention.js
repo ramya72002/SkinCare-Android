@@ -21,7 +21,7 @@ const SkinCancerPrevention = ({ navigation, route }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View >
       <Header />
       <Text style={styles.mainHeading}>Skin Cancer Prevention</Text>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>

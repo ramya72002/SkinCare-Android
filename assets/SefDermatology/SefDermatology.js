@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
+
+const { width, height } = Dimensions.get('window');
 
 const SefDermatology = ({ navigation, route }) => {
   const [preferredLanguage, setPreferredLanguage] = useState('en');
@@ -81,34 +83,30 @@ const SefDermatology = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 0,
-    marginTop: 1,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
-    fontSize: 30,
+    fontSize: width * 0.07,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: height * 0.03,
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
+    padding: width * 0.05,
     alignItems: 'center',
   },
   typeButton: {
-    width: 350,
-    height: 200,
+    width: width * 0.9,
+    height: height * 0.25,
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: height * 0.02,
     overflow: 'hidden',
   },
   buttonText: {
-    fontSize: 26,
-    marginBottom: 10,
-    marginTop: 75,
+    fontSize: width * 0.07,
+    marginBottom: height * 0.01,
+    marginTop: height * 0.1,
     textAlign: 'center',
     fontWeight: 'bold',
   },

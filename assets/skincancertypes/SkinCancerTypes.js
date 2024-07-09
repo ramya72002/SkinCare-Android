@@ -2,11 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
 import Header from '../Header';
 
-const SkinCancerTypes = ({ navigation  , route }) => {
-    const { preferredLanguage } = route.params || { preferredLanguage: 'en' };
-  
+const SkinCancerTypes = ({ navigation   }) => {
+   
   return (
-    <View style={styles.container}>
+    <View >
            <Header />
 
       <Text style={styles.mainHeading}>Skin Cancer Types</Text>
