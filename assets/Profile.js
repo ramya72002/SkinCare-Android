@@ -53,7 +53,7 @@ const Profile = ({ navigation }) => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView  >
       <Header />
       <Text style={styles.headerText}>Profile</Text>
       <View style={styles.profileContainer}>

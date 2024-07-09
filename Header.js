@@ -17,20 +17,13 @@ const Header = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
-    height: 100,
+    height: 50,
     backgroundColor: '#94499c',
-    flexDirection: 'row',
-    // alignItems: 'center',
-    // paddingHorizontal: 10,
-    // elevation: 3,
-    // shadowColor: '#000',
-    // shadowOpacity: 0.4,
-    // shadowRadius: 10,
-    // shadowOffset: { width: 30, height: 80 },
+    flexDirection: 'row'
   },
   backButton: {
-    width: 50,
-    height: 150,
+    width: 25,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
