@@ -150,7 +150,7 @@ const Login = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: width * 0.9, // 90% of screen width
+    width: width * 1, // 90% of screen width
   },
   loginText: {
     color: 'white',
