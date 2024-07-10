@@ -21,7 +21,7 @@ const SkinCancerPrevention = ({ navigation, route }) => {
   }, []);
 
   return (
-    <View >
+    <View style={styles.container}>
       <Header />
       <Text style={styles.mainHeading}>Skin Cancer Prevention</Text>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
@@ -57,22 +57,18 @@ const SkinCancerPrevention = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 20,
-    marginTop: 50,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
     fontSize: 34,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginVertical: 20,
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
     alignItems: 'center',
+    paddingBottom: 20, // Ensure the last item is fully scrollable
   },
   typeButton: {
     width: 300,
@@ -83,8 +79,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 26,
-    marginBottom: 5,
-    marginTop: 50,
+    color: 'black',
+    textAlign: 'center',
     fontWeight: 'bold',
   },
   image: {

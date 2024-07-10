@@ -2,14 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
 import Header from '../Header';
 
-const SkinCancerTypes = ({ navigation   }) => {
-   
+const SkinCancerTypes = ({ navigation }) => {
   return (
-    <View >
-           <Header />
-
+    <View style={styles.container}>
+      <Header />
       <Text style={styles.mainHeading}>Skin Cancer Types</Text>
-       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
         <TouchableOpacity
           style={styles.typeButton}
           onPress={() => navigation.navigate("BCComponent")}
@@ -42,22 +40,18 @@ const SkinCancerTypes = ({ navigation   }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 0,
-    marginTop:1,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
     fontSize: 34,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginVertical: 20,
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
     alignItems: 'center',
+    paddingBottom: 20, // Add padding to the bottom to ensure last item is scrollable
   },
   typeButton: {
     width: 200,
