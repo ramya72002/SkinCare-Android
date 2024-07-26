@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Background from './Background';
 import Btn from './Btn';
@@ -14,6 +14,7 @@ const Login = (props) => {
   const [contactNumber, setContactNumber] = useState('');
   const [name, setName] = useState('');
   const [preferredLanguage, setPreferredLanguage] = useState('en');
+  const [loading, setLoading] = useState(false); // Loading state
 
   const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,6 +42,7 @@ const Login = (props) => {
     }
 
     const loginData = { email, contactNumber, preferredLanguage, name };
+    setLoading(true); // Start loading
 
     try {
       const response = await fetch('https://backen-skin-care-app.vercel.app/login', {
@@ -72,6 +74,8 @@ const Login = (props) => {
     } catch (error) {
       console.error('Error:', error);
       Alert.alert('Error', 'Failed to login');
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -80,27 +84,34 @@ const Login = (props) => {
       <View style={styles.container}>
         <Text style={styles.loginText}>Login</Text>
         <View style={styles.formContainer}>
-          <Text style={styles.welcomeText}>Welcome Back</Text>
-          <Text style={styles.loginPromptText}>Login to your account</Text>
-          <Field
-            placeholder="Email"
-            keyboardType={'email-address'}
-            value={email}
-            onChangeText={setEmail}
-          />
-          <Field
-            placeholder="Contact Number"
-            keyboardType={'numeric'}
-            value={contactNumber}
-            onChangeText={setContactNumber}
-          />
-          <View style={styles.pickerContainer}>
-            <Text style={styles.pickerLabel}>Preferred Language</Text>
-            <Picker
-              selectedValue={preferredLanguage}
-              onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
-              style={styles.picker}
-            >
+          {loading ? (  
+            <Image
+              source={require('./1495.gif')}
+              style={styles.loadingGif}
+            />
+          ) : (
+            <>
+              <Text style={styles.welcomeText}>Welcome Back</Text>
+              <Text style={styles.loginPromptText}>Login to your account</Text>
+              <Field
+                placeholder="Email"
+                keyboardType={'email-address'}
+                value={email}
+                onChangeText={setEmail}
+              />
+              <Field
+                placeholder="Contact Number"
+                keyboardType={'numeric'}
+                value={contactNumber}
+                onChangeText={setContactNumber}
+              />
+              <View style={styles.pickerContainer}>
+                <Text style={styles.pickerLabel}>Preferred Language</Text>
+                <Picker
+                  selectedValue={preferredLanguage}
+                  onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
+                  style={styles.picker}
+                >
               <Picker.Item label="Assamese" value="as" />
               <Picker.Item label="Awadhi" value="awa" />
               <Picker.Item label="Bengali" value="bn" />
@@ -127,20 +138,22 @@ const Login = (props) => {
               <Picker.Item label="Tamil" value="ta" />
               <Picker.Item label="Telugu" value="te" />
               <Picker.Item label="Urdu" value="ur" />
-            </Picker>
-          </View>
-          <Btn
-            textColor="white"
-            bgColor={darkGreen}
-            btnLabel="Login"
-            Press={handleLogin}
-          />
-          <View style={styles.signupContainer}>
-            <Text style={styles.signupText}>Don't have an account? </Text>
-            <TouchableOpacity onPress={() => props.navigation.navigate('Signup')}>
-              <Text style={styles.signupLinkText}>Signup</Text>
-            </TouchableOpacity>
-          </View>
+                </Picker>
+              </View>
+              <Btn
+                textColor="white"
+                bgColor={darkGreen}
+                btnLabel="Login"
+                Press={handleLogin}
+              />
+              <View style={styles.signupContainer}>
+                <Text style={styles.signupText}>Don't have an account? </Text>
+                <TouchableOpacity onPress={() => props.navigation.navigate('Signup')}>
+                  <Text style={styles.signupLinkText}>Signup</Text>
+                </TouchableOpacity>
+              </View>
+            </>
+          )}
         </View>
       </View>
     </Background>
@@ -150,30 +163,30 @@ const Login = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: width * 1, // 90% of screen width
+    width: width * 1,
   },
   loginText: {
     color: 'white',
-    fontSize: 0.12 * width, // dynamic font size
+    fontSize: 0.12 * width,
     fontWeight: 'bold',
     marginVertical: 50,
   },
   formContainer: {
     backgroundColor: 'white',
-    height: height * 0.8, // 80% of screen height
-    width: width * 1, // 90% of screen width
+    height: height * 0.8,
+    width: width * 1,
     borderTopLeftRadius: 180,
     paddingTop: 90,
     alignItems: 'center',
   },
   welcomeText: {
-    fontSize: 0.09 * width, // dynamic font size
+    fontSize: 0.09 * width,
     color: darkGreen,
     fontWeight: 'bold',
   },
   loginPromptText: {
     color: 'grey',
-    fontSize: 0.05 * width, // dynamic font size
+    fontSize: 0.05 * width,
     fontWeight: 'bold',
     marginBottom: 20,
   },
@@ -202,6 +215,10 @@ const styles = StyleSheet.create({
     color: darkGreen,
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  loadingGif: {
+    width: 100,
+    height: 100,
   },
 });
 
