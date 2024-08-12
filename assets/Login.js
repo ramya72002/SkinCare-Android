@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Background from './Background';
 import Btn from './Btn';
@@ -9,21 +9,15 @@ import { Picker } from '@react-native-picker/picker';
 
 const { width, height } = Dimensions.get('window');
 
-const Login = (props) => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [name, setName] = useState('');
   const [preferredLanguage, setPreferredLanguage] = useState('en');
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
 
-  const validateEmail = (email) => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  };
-
-  const validateContactNumber = (number) => {
-    return /^\d+$/.test(number);
-  };
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateContactNumber = (number) => /^\d+$/.test(number);
 
   const handleLogin = async () => {
     if (!email || !contactNumber) {
@@ -41,8 +35,9 @@ const Login = (props) => {
       return;
     }
 
+    setLoading(true);
+
     const loginData = { email, contactNumber, preferredLanguage, name };
-    setLoading(true); // Start loading
 
     try {
       const response = await fetch('https://backen-skin-care-app.vercel.app/login', {
@@ -54,14 +49,12 @@ const Login = (props) => {
       });
 
       const responseData = await response.json();
-      console.log('Server response:', responseData);
 
       if (!response.ok) {
         Alert.alert('Error', responseData.error || 'Failed to login');
         return;
       }
 
-      // Save login details to AsyncStorage including name and preferredLanguage
       const userData = {
         ...loginData,
         name: responseData.name,
@@ -69,13 +62,12 @@ const Login = (props) => {
       };
       await AsyncStorage.setItem('loginData', JSON.stringify(userData));
 
-      // Navigate to Categories screen with preferredLanguage
-      props.navigation.navigate('Categories', { preferredLanguage: userData.preferredLanguage });
+      navigation.navigate('Categories', { preferredLanguage: userData.preferredLanguage });
     } catch (error) {
       console.error('Error:', error);
       Alert.alert('Error', 'Failed to login');
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -84,24 +76,21 @@ const Login = (props) => {
       <View style={styles.container}>
         <Text style={styles.loginText}>Login</Text>
         <View style={styles.formContainer}>
-          {loading ? (  
-            <Image
-              source={require('./1495.gif')}
-              style={styles.loadingGif}
-            />
+          {loading ? (
+            <Image source={require('./1495.gif')} style={styles.loadingImage} />
           ) : (
             <>
               <Text style={styles.welcomeText}>Welcome Back</Text>
               <Text style={styles.loginPromptText}>Login to your account</Text>
               <Field
                 placeholder="Email"
-                keyboardType={'email-address'}
+                keyboardType="email-address"
                 value={email}
                 onChangeText={setEmail}
               />
               <Field
                 placeholder="Contact Number"
-                keyboardType={'numeric'}
+                keyboardType="numeric"
                 value={contactNumber}
                 onChangeText={setContactNumber}
               />
@@ -112,45 +101,48 @@ const Login = (props) => {
                   onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
                   style={styles.picker}
                 >
-              <Picker.Item label="Assamese" value="as" />
-              <Picker.Item label="Awadhi" value="awa" />
-              <Picker.Item label="Bengali" value="bn" />
-              <Picker.Item label="Bhojpuri" value="bho" />
-              <Picker.Item label="Chhattisgarhi" value="chg" />
-              <Picker.Item label="Dogri" value="doi" />
-              <Picker.Item label="English" value="en" />
-              <Picker.Item label="Gujarati" value="gu" />
-              <Picker.Item label="Haryanvi" value="hne" />
-              <Picker.Item label="Hindi" value="hi" />
-              <Picker.Item label="Kannada" value="kn" />
-              <Picker.Item label="Kashmiri" value="ks" />
-              <Picker.Item label="Konkani" value="kok" />
-              <Picker.Item label="Maithili" value="mai" />
-              <Picker.Item label="Malayalam" value="ml" />
-              <Picker.Item label="Manipuri" value="mni" />
-              <Picker.Item label="Marathi" value="mr" />
-              <Picker.Item label="Nepali" value="ne" />
-              <Picker.Item label="Odia" value="or" />
-              <Picker.Item label="Punjabi" value="pa" />
-              <Picker.Item label="Sanskrit" value="sa" />
-              <Picker.Item label="Santali" value="sat" />
-              <Picker.Item label="Sindhi" value="sd" />
-              <Picker.Item label="Tamil" value="ta" />
-              <Picker.Item label="Telugu" value="te" />
-              <Picker.Item label="Urdu" value="ur" />
+                  {/* Language options */}
+                  <Picker.Item label="Assamese" value="as" />
+                  <Picker.Item label="Awadhi" value="awa" />
+                  <Picker.Item label="Bengali" value="bn" />
+                  <Picker.Item label="Bhojpuri" value="bho" />
+                  <Picker.Item label="Chhattisgarhi" value="chg" />
+                  <Picker.Item label="Dogri" value="doi" />
+                  <Picker.Item label="English" value="en" />
+                  <Picker.Item label="Gujarati" value="gu" />
+                  <Picker.Item label="Haryanvi" value="hne" />
+                  <Picker.Item label="Hindi" value="hi" />
+                  <Picker.Item label="Kannada" value="kn" />
+                  <Picker.Item label="Kashmiri" value="ks" />
+                  <Picker.Item label="Konkani" value="kok" />
+                  <Picker.Item label="Maithili" value="mai" />
+                  <Picker.Item label="Malayalam" value="ml" />
+                  <Picker.Item label="Manipuri" value="mni" />
+                  <Picker.Item label="Marathi" value="mr" />
+                  <Picker.Item label="Nepali" value="ne" />
+                  <Picker.Item label="Odia" value="or" />
+                  <Picker.Item label="Punjabi" value="pa" />
+                  <Picker.Item label="Sanskrit" value="sa" />
+                  <Picker.Item label="Santali" value="sat" />
+                  <Picker.Item label="Sindhi" value="sd" />
+                  <Picker.Item label="Tamil" value="ta" />
+                  <Picker.Item label="Telugu" value="te" />
+                  <Picker.Item label="Urdu" value="ur" />
                 </Picker>
               </View>
-              <Btn
-                textColor="white"
-                bgColor={darkGreen}
-                btnLabel="Login"
-                Press={handleLogin}
-              />
-              <View style={styles.signupContainer}>
-                <Text style={styles.signupText}>Don't have an account? </Text>
-                <TouchableOpacity onPress={() => props.navigation.navigate('Signup')}>
-                  <Text style={styles.signupLinkText}>Signup</Text>
-                </TouchableOpacity>
+              <View style={styles.btnContainer}>
+                <Btn
+                  textColor="white"
+                  bgColor={darkGreen}
+                  btnLabel="Login"
+                  Press={handleLogin}
+                />
+                <View style={styles.signupContainer}>
+                  <Text style={styles.signupText}>Don't have an account? </Text>
+                  <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                    <Text style={styles.signupLinkText}>Signup</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </>
           )}
@@ -162,61 +154,76 @@ const Login = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    width: width * 1,
+    flex: 1,
+    width: '200%',
+    paddingTop: 80,
   },
   loginText: {
     color: 'white',
-    fontSize: 0.12 * width,
+    fontSize: width * 0.12,
     fontWeight: 'bold',
-    marginVertical: 50,
+    marginBottom: height * 0.08,
+    paddingLeft: 150,
+  },
+  welcomeText: {
+    paddingLeft: 50,
+    fontSize: width * 0.09,
+    color: darkGreen,
+    fontWeight: 'bold',
+    paddingTop: 20,
+  },
+  loginPromptText: {
+    paddingLeft: 80,
+    color: 'grey',
+    fontSize: width * 0.045,
+    marginBottom: height * 0.05,
   },
   formContainer: {
     backgroundColor: 'white',
-    height: height * 0.8,
-    width: width * 1,
+    width: '100%',
     borderTopLeftRadius: 180,
-    paddingTop: 90,
-    alignItems: 'center',
-  },
-  welcomeText: {
-    fontSize: 0.09 * width,
-    color: darkGreen,
-    fontWeight: 'bold',
-  },
-  loginPromptText: {
-    color: 'grey',
-    fontSize: 0.05 * width,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    paddingTop: height * 0.1,
+    paddingLeft: height * 0.04,
+    alignItems: 'flex-start',
+    paddingBottom: height * 0.4,
+    flex: 1,
   },
   pickerContainer: {
-    width: '78%',
-    marginVertical: 10,
+    width: '100%',
+    marginVertical: height * 0.02,
   },
   pickerLabel: {
     color: 'grey',
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: width * 0.045,
+    marginBottom: height * 0.01,
   },
   picker: {
-    height: 50,
+    height: height * 0.05,
+    width: '50%',
+  },
+  btnContainer: {
+    alignItems: 'left',
+    justifyContent: 'left',
     width: '100%',
+    paddingLeft:height * 0.05,
+    marginTop: height * 0.02, // Adjust margin as necessary
   },
   signupContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'left',
   },
   signupText: {
-    fontSize: 16,
+    fontSize: width * 0.04,
     fontWeight: 'bold',
   },
   signupLinkText: {
     color: darkGreen,
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: width * 0.04,
   },
-  loadingGif: {
+  loadingImage: {
+    justifyContent:'center',
+    alignContent:'center',
     width: 100,
     height: 100,
   },

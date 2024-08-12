@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, Image, TextInput } from 'react-native';
 import Background from './Background';
 import Btn from './Btn';
 import { darkGreen } from './Constants';
-import Field from './Field';
 
 const { width, height } = Dimensions.get('window');
+
+// Scaling function for responsive font sizes
+const scaleFont = (size) => size * (width / 375); // 375 is the base width used for scaling
 
 const Signup = (props) => {
   const [name, setName] = useState('');
@@ -84,9 +86,29 @@ const Signup = (props) => {
             <Image source={require('./1495.gif')} style={styles.loadingImage} />
           ) : (
             <>
-              <Field placeholder="Name" value={name} onChangeText={setName} />
-              <Field placeholder="Email" keyboardType={'email-address'} value={email} onChangeText={setEmail} />
-              <Field placeholder="Contact Number" keyboardType={'numeric'} value={contactNumber} onChangeText={setContactNumber} />
+              <TextInput
+                placeholder="Name"
+                value={name}
+                onChangeText={setName}
+                style={styles.inputField}
+                placeholderTextColor={darkGreen}
+              />
+              <TextInput
+                placeholder="Email"
+                keyboardType={'email-address'}
+                value={email}
+                onChangeText={setEmail}
+                style={styles.inputField}
+                placeholderTextColor={darkGreen}
+              />
+              <TextInput
+                placeholder="Contact Number"
+                keyboardType={'numeric'}
+                value={contactNumber}
+                onChangeText={setContactNumber}
+                style={styles.inputField}
+                placeholderTextColor={darkGreen}
+              />
               <Btn textColor="white" bgColor={darkGreen} btnLabel="Signup" Press={handleSignup} />
               <View style={styles.loginContainer}>
                 <Text style={styles.loginText}>Already have an account? </Text>
@@ -109,38 +131,51 @@ const styles = StyleSheet.create({
   },
   registerText: {
     color: 'white',
-    fontSize: 0.12 * width, // dynamic font size
+    fontSize: scaleFont(54), // Scaled font size
     fontWeight: 'bold',
-    marginTop: 50,
+    marginTop: height * 0.10, // 10% of screen height
   },
   createAccountText: {
     color: 'white',
-    fontSize: 0.05 * width, // dynamic font size
+    fontSize: scaleFont(18), // Scaled font size
     fontWeight: 'bold',
-    marginBottom: 40,
+    marginBottom: height * 0.02, // 2% of screen height
   },
   formContainer: {
     backgroundColor: 'white',
-    height: height * 0.8, // 80% of screen height
-    width: width * 1, // 90% of screen width
-    borderTopLeftRadius: 200,
-    paddingTop: 100,
+
+    height: height * 0.9, // 80% of screen height
+    width: width * 1.05, // 100% of screen width
+    borderTopLeftRadius: 250,
+    paddingTop: height * 0.15, // 10% of screen height
     alignItems: 'center',
+    paddingLeft: height * 0.05,
+  },
+  inputField: {
+    borderRadius: 100,
+    color: darkGreen,
+    paddingHorizontal: 15,
+    width: '90%',
+    backgroundColor: 'rgb(220,220, 220)',
+    marginVertical: 10,
+    height: "9%",
   },
   loginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: height * 0.15, // 2% of screen height
   },
   loginText: {
-    fontSize: 20,
+    fontSize: scaleFont(16), // Scaled font size
     fontWeight: 'bold',
   },
   loginLinkText: {
     color: darkGreen,
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: scaleFont(16), // Scaled font size
   },
   loadingImage: {
+    justifyContent:'center',
     width: 100,
     height: 100,
   },
