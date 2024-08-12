@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons'; // Import Ionicons
+
+const { width } = Dimensions.get('window'); // Get screen width
 
 const Header = () => {
   const navigation = useNavigation();
@@ -15,17 +17,20 @@ const Header = () => {
 };
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    width: '100%',
-    height: 50,
+  headerContainer: { 
+    height: 50,  
     backgroundColor: '#94499c',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',  // Center aligns items vertically
   },
-  backButton: {
-    width: 25,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+  backButton: { 
+    marginLeft: 10, // Adjust if necessary
+    marginTop: 10, // Moves the back arrow down
+  },
+  headerText: {
+    color: '#fff',
+    fontSize: 28,
+    marginLeft: 10,
   },
 });
 

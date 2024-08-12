@@ -86,29 +86,30 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
-    fontSize: width * 0.07,
+    fontSize: width * 0.06, // Adjust to 6% of screen width for better consistency
     fontWeight: 'bold',
-    marginBottom: height * 0.03,
+    marginVertical: height * 0.03, // Adjusted for spacing
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
-    padding: width * 0.05,
+    padding: width * 0.05, // Padding adjusted to 5% of screen width
     alignItems: 'center',
   },
   typeButton: {
-    width: width * 0.9,
-    height: height * 0.25,
+    width: width * 0.9, // 90% of screen width
+    height: height * 0.25, // 25% of screen height
     borderRadius: 10,
-    marginBottom: height * 0.02,
+    marginBottom: height * 0.02, // 2% margin bottom for spacing
     overflow: 'hidden',
   },
   buttonText: {
-    fontSize: width * 0.07,
-    marginBottom: height * 0.01,
-    marginTop: height * 0.1,
+    fontSize: width * 0.06, // Adjusted to 5% of screen width
+    color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
+    marginBottom:height * 0.0001,
+    padding: width * 0.02, // Padding adjusted for better readability
   },
   image: {
     flex: 1,

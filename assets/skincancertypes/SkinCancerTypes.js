@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import Header from '../Header';
+
+const { width, height } = Dimensions.get('window');
 
 const SkinCancerTypes = ({ navigation }) => {
   return (
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
-    fontSize: 34,
+    fontSize: 0.04 * height, // 4% of screen height
     fontWeight: 'bold',
     marginVertical: 20,
     color: '#94499c',
@@ -51,17 +53,17 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     alignItems: 'center',
-    paddingBottom: 20, // Add padding to the bottom to ensure last item is scrollable
+    paddingBottom: 0.08 * height, // 5% of screen height for bottom padding
   },
   typeButton: {
-    width: 200,
-    height: 200,
+    width: 0.60 * width, // 45% of screen width
+    height: 0.28 * height, // 25% of screen height
     borderRadius: 10,
     marginBottom: 10,
     overflow: 'hidden',
   },
   buttonText: {
-    fontSize: 26,
+    fontSize: 0.03 * height, // 3% of screen height
     color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
+
+const { width, height } = Dimensions.get('window');
 
 const SkinCancerPrevention = ({ navigation, route }) => {
   const [preferredLanguage, setPreferredLanguage] = useState('en');
@@ -60,25 +62,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
-    fontSize: 34,
+    fontSize: 0.04 * height, // 4% of screen height
     fontWeight: 'bold',
-    marginVertical: 20,
+    marginVertical: 0.02 * height, // 2% of screen height
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
     alignItems: 'center',
-    paddingBottom: 20, // Ensure the last item is fully scrollable
+    paddingBottom: 0.05 * height, // 5% of screen height for bottom padding
   },
   typeButton: {
-    width: 300,
-    height: 200,
+    width: 0.8 * width, // 80% of screen width
+    height: 0.25 * height, // 25% of screen height
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 0.02 * height, // 2% of screen height for margin
     overflow: 'hidden',
   },
   buttonText: {
-    fontSize: 26,
+    fontSize: 0.03 * height, // 3% of screen height
     color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',

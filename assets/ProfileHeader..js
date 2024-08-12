@@ -1,32 +1,37 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons'; // Import Ionicons
 
-const ProfileHeader = () => {
+const { width } = Dimensions.get('window'); // Get screen width
+
+const Header = () => {
   const navigation = useNavigation();
-
   return (
-    <View style={styles.header}>
-      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Profile')}>
-        <Ionicons name="person" size={34} color="white" />
-       </TouchableOpacity>
+    <View style={styles.headerContainer}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Icon name="arrow-back" size={30} color="#fff" />
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    width: '100%',
+  headerContainer: { 
+    height: 50,  
     backgroundColor: '#94499c',
-    padding: 20,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center',  // Center aligns items vertically
   },
-  tab: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  }
+  backButton: { 
+    marginLeft: 10, // Adjust if necessary
+    marginTop: 10, // Moves the back arrow down
+  },
+  headerText: {
+    color: '#fff',
+    fontSize: 28,
+    marginLeft: 10,
+  },
 });
 
-export default ProfileHeader;
+export default Header;

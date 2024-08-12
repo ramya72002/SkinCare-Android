@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
-import Header from '../Header';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
 
 const Categories = ({ navigation, route }) => {
   const { preferredLanguage } = route.params || { preferredLanguage: 'en' };
@@ -60,14 +61,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   heading: {
-    fontSize: 35,
+    fontSize: 0.05 * height, // 5% of screen height
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#94499c',
   },
   box: {
-    width: '100%',
-    height: 150,
+    width: '95%', // 90% of the screen width
+    height: 0.2 * height, // 20% of screen height
     marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   title: {
-    fontSize: 25,
+    fontSize: 0.03 * height, // 3% of screen height
     fontWeight: 'bold',
     color: '#fff',
     zIndex: 1,
