@@ -26,7 +26,7 @@ const Signup = (props) => {
 
   const handleSignup = async () => {
     if (!name || !email || !contactNumber) {
-      Alert.alert('Error', 'All fields are required');
+      Alert.alert('Missing Information', 'Please ensure all fields are completed before proceeding.');
       return;
     }
 

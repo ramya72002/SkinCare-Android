@@ -51,7 +51,7 @@ const Login = ({ navigation }) => {
       const responseData = await response.json();
 
       if (!response.ok) {
-        Alert.alert('Error', responseData.error || 'Failed to login');
+        Alert.alert('Message', responseData.error || 'Please Signup To Login');
         return;
       }
 
@@ -65,7 +65,7 @@ const Login = ({ navigation }) => {
       navigation.navigate('Categories', { preferredLanguage: userData.preferredLanguage });
     } catch (error) {
       console.error('Error:', error);
-      Alert.alert('Error', 'Failed to login');
+      Alert.alert('Error', 'Please Signup To Login');
     } finally {
       setLoading(false);
     }
