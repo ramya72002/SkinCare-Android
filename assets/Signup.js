@@ -119,7 +119,7 @@ const Signup = (props) => {
             </>
           )}
           {/* Footer Text */}
-          <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+          <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
         </View>
       </View>
     </Background>

@@ -113,7 +113,7 @@ const Profile = ({ navigation }) => {
       </View>
       
       {/* Footer Section */}
-      <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+      <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
     </ScrollView>
   );
 };
@@ -155,29 +155,27 @@ const styles = StyleSheet.create({
   profileItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center', // Align the label and picker vertically
     marginBottom: 10,
   },
   label: {
     fontSize: 16,
     color: '#333',
     fontWeight: 'bold',
-  },
-  value: {
-    fontSize: 16,
-    color: '#555',
+    flex: 1, // Make the label take up some space
   },
   pickerContainer: {
+    flex: 2, // Adjust flex value to control the width of the picker relative to the label
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 5,
-    marginTop: 5,
-    marginBottom: 15,
-    width: '60%',
+    marginLeft: 10, // Add some spacing between label and picker
   },
   picker: {
     height: 40,
     width: '100%',
   },
+   
   logoutButton: {
     backgroundColor: '#ff6961',
     paddingVertical: 12,

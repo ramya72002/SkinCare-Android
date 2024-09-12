@@ -149,13 +149,13 @@ const Login = ({ navigation }) => {
               </TouchableOpacity>
 
             </View>
-            <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+            <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
 
           </View>
           <View style={styles.footer}>
           </View>
         </View>
-        <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+        <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
 
       </View>
     </Background>
