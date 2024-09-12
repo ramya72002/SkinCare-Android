@@ -144,6 +144,9 @@ const Login = ({ navigation }) => {
                   </TouchableOpacity>
                 </View>
               </View>
+              <View style={styles.footer}>
+                <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+              </View>
             </>
           )}
         </View>
@@ -157,6 +160,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '200%',
     paddingTop: 80,
+    // paddingBottom: 60, // Ensure space for the footer
   },
   loginText: {
     color: 'white',
@@ -170,13 +174,13 @@ const styles = StyleSheet.create({
     fontSize: width * 0.09,
     color: darkGreen,
     fontWeight: 'bold',
-    paddingTop: 20,
+    paddingTop: 0,
   },
   loginPromptText: {
     paddingLeft: 80,
-    color: 'grey',
+    color: 'black',
     fontSize: width * 0.045,
-    marginBottom: height * 0.05,
+    marginBottom: height * 0.01,
   },
   formContainer: {
     backgroundColor: 'white',
@@ -185,7 +189,7 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.1,
     paddingLeft: height * 0.04,
     alignItems: 'flex-start',
-    paddingBottom: height * 0.4,
+    paddingBottom: height * 0.1, // Reduced to make room for footer
     flex: 1,
   },
   pickerContainer: {
@@ -193,7 +197,7 @@ const styles = StyleSheet.create({
     marginVertical: height * 0.02,
   },
   pickerLabel: {
-    color: 'grey',
+    color: 'black',
     fontSize: width * 0.045,
     marginBottom: height * 0.01,
   },
@@ -205,8 +209,8 @@ const styles = StyleSheet.create({
     alignItems: 'left',
     justifyContent: 'left',
     width: '100%',
-    paddingLeft:height * 0.05,
-    marginTop: height * 0.02, // Adjust margin as necessary
+    paddingLeft: height * 0.05,
+    marginTop: height * 0.03,
   },
   signupContainer: {
     flexDirection: 'row',
@@ -222,10 +226,25 @@ const styles = StyleSheet.create({
     fontSize: width * 0.04,
   },
   loadingImage: {
-    justifyContent:'center',
-    alignContent:'center',
+    justifyContent: 'center',
+    alignContent: 'center',
     width: 100,
     height: 100,
+  },
+  footer: {
+    marginTop: 80,            // Adjust to give some space between content and footer
+    alignItems: 'left',
+    justifyContent: 'left',
+    paddingVertical: 10,
+    paddingLeft:40,
+    backgroundColor: '#f0f0f0',
+    width: '100%',
+  },
+  footerText: {
+    color: '#555',
+    fontSize: 14,
+    fontWeight: 'normal',
+    justifyContent: 'center',
   },
 });
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "skinapp",
-    "slug": "skinapp",
+    "name": "SkinSaathi",
+    "slug": "SkinSaathi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ramya72002.skinapp"
+      "package": "com.ramya72002.SkinSaathi"
     },
     "web": {
       "favicon": "./assets/favicon.png"
