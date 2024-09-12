@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '200%',
-    paddingTop: 80,
+    paddingTop: 40,
     // paddingBottom: 60, // Ensure space for the footer
   },
   loginText: {
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     width: '100%',
-    marginVertical: height * 0.02,
+    marginVertical: height * 0.03,
   },
   pickerLabel: {
     color: 'black',
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footer: {
-    marginTop: 80,            // Adjust to give some space between content and footer
+    marginTop: 100,            // Adjust to give some space between content and footer
     alignItems: 'left',
     justifyContent: 'left',
     paddingVertical: 10,

@@ -118,6 +118,8 @@ const Signup = (props) => {
               </View>
             </>
           )}
+          {/* Footer Text */}
+          <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
         </View>
       </View>
     </Background>
@@ -143,9 +145,8 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     backgroundColor: 'white',
-
     height: height * 0.9, // 80% of screen height
-    width: width * 1.05, // 100% of screen width
+    width: width * 1.09, // 100% of screen width
     borderTopLeftRadius: 250,
     paddingTop: height * 0.15, // 10% of screen height
     alignItems: 'center',
@@ -158,12 +159,12 @@ const styles = StyleSheet.create({
     width: '90%',
     backgroundColor: 'rgb(220,220, 220)',
     marginVertical: 10,
-    height: "9%",
+    height: '9%',
   },
   loginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: height * 0.15, // 2% of screen height
+    marginTop: height * 0.0, // 15% of screen height
   },
   loginText: {
     fontSize: scaleFont(16), // Scaled font size
@@ -175,9 +176,16 @@ const styles = StyleSheet.create({
     fontSize: scaleFont(16), // Scaled font size
   },
   loadingImage: {
-    justifyContent:'center',
+    justifyContent: 'center',
     width: 100,
     height: 100,
+  },
+  footerText: {
+    marginTop: height * 0.24, // Spacing from other components
+    fontSize: scaleFont(14),
+    color: darkGreen,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
