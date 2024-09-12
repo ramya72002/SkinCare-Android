@@ -16,7 +16,6 @@ const Profile = ({ navigation }) => {
         if (loginDataString) {
           const loginData = JSON.parse(loginDataString);
           setProfileData(loginData);
-          // Set preferredLanguage to loginData.preferredLanguage if it exists, otherwise default to 'en'
           setPreferredLanguage(loginData.preferredLanguage || 'en');
         }
       } catch (error) {
@@ -34,13 +33,12 @@ const Profile = ({ navigation }) => {
     const updatedProfileData = { ...profileData, preferredLanguage: itemValue };
     setProfileData(updatedProfileData);
     await AsyncStorage.setItem('loginData', JSON.stringify(updatedProfileData));
-    console.log("uuuuuuuuuuuuuu",updatedProfileData)
     navigation.navigate('Categories', { preferredLanguage: itemValue });
   };
 
   const handleLogout = async () => {
-    await AsyncStorage.removeItem('loginData'); // Remove stored login data
-    navigation.navigate('Login'); // Navigate to Login screen
+    await AsyncStorage.removeItem('loginData');
+    navigation.navigate('Login');
   };
 
   if (isLoading) {
@@ -53,7 +51,7 @@ const Profile = ({ navigation }) => {
   }
 
   return (
-    <ScrollView  >
+    <ScrollView contentContainerStyle={styles.container}>
       <Header />
       <Text style={styles.headerText}>Profile</Text>
       <View style={styles.profileContainer}>
@@ -113,6 +111,9 @@ const Profile = ({ navigation }) => {
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>
+      
+      {/* Footer Section */}
+      <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
     </ScrollView>
   );
 };
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 5,
     marginBottom: 15,
-    width: '50%', // Ensure the picker container takes full width
+    width: '50%',
   },
   picker: {
     height: 50,
@@ -186,6 +187,13 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  footerText: {
+    textAlign: 'center',
+    fontSize: 16,
+    marginTop: 290,
+    paddingBottom: 10,
+    color: '#94499c',
   },
 });
 
