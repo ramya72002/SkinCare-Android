@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Header from '../Header';
-
+import Header from './Header';
 const Profile = ({ navigation }) => {
   const [profileData, setProfileData] = useState(null);
   const [preferredLanguage, setPreferredLanguage] = useState('');

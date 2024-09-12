@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
-
 const { width, height } = Dimensions.get('window');
 
 const SkinCancerPrevention = ({ navigation, route }) => {

@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Header from '../Header';
-
+import Header from './Header';
 const UserForum = () => {
   const handleJoinGroup = (url) => {
     Linking.openURL(url);

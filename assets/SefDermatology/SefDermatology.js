@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
-
 const { width, height } = Dimensions.get('window');
 
 const SefDermatology = ({ navigation, route }) => {

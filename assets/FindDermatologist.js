@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Linking } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
-import Header from '../Header';
+import Header from './Header';
 import { Ionicons } from '@expo/vector-icons'; // Assuming you use Expo for icons
 
 const FindDermatologist = () => {
