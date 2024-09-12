@@ -145,11 +145,14 @@ const Login = ({ navigation }) => {
               <Text style={styles.signupText}>Don't have an account? </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.signupLinkText}>Signup</Text>
+
               </TouchableOpacity>
+
             </View>
+            <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+
           </View>
           <View style={styles.footer}>
-            <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
           </View>
         </View>
         <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
@@ -170,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: width * 0.1,
     fontWeight: 'bold',
     marginBottom: height * 0.06,
-    paddingLeft: 20,
+    paddingLeft: 30,
     marginTop: height * 0.06,
   },
   welcomeText: {
@@ -221,6 +224,8 @@ const styles = StyleSheet.create({
     justifyContent: 'left',
   },
   signupText: {
+    justifyContent: 'center',
+    paddingLeft:10,
     fontSize: width * 0.04,
     fontWeight: 'bold',
   },
@@ -240,16 +245,17 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footer: {
-    marginTop: 50,
-    alignItems: 'left',
-    justifyContent: 'left',
-    paddingVertical: 10,
-    paddingLeft: 40,
+    paddingTop: 50,
+    
+    justifyContent: 'center',
+    // paddingVertical: 10,
+    // paddingLeft: 40,
     color: darkGreen,
     width: '100%',
   },
   footerText: {
-    color: darkGreen,
+    color: '#2c3e50',
+    alignItems: 'center',
     fontSize: 14,
     fontWeight: 'normal',
     justifyContent: 'center',

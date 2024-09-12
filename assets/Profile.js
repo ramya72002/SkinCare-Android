@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
@@ -68,7 +68,7 @@ const Profile = ({ navigation }) => {
           <Text style={styles.value}>{profileData?.contactNumber}</Text>
         </View>
         <View style={styles.profileItem}>
-          <Text style={styles.label}>Preferred Language:</Text>
+          <Text style={styles.label}>Language:</Text>
           <View style={styles.pickerContainer}>
             <Picker
               selectedValue={preferredLanguage}
@@ -132,36 +132,38 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: '#f9f9f9',
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   headerText: {
-    fontSize: 35,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 15,
     color: '#94499c',
     textAlign: 'center',
   },
   profileContainer: {
     backgroundColor: '#fff',
-    padding: 20,
+    padding: 15,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
+    marginBottom: 20,
   },
   profileItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   label: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#333',
     fontWeight: 'bold',
   },
   value: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#555',
   },
   pickerContainer: {
@@ -170,29 +172,29 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 5,
     marginBottom: 15,
-    width: '50%',
+    width: '60%',
   },
   picker: {
-    height: 50,
+    height: 40,
     width: '100%',
   },
   logoutButton: {
     backgroundColor: '#ff6961',
-    padding: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     borderRadius: 5,
     alignItems: 'center',
     marginTop: 20,
   },
   logoutButtonText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   footerText: {
     textAlign: 'center',
-    fontSize: 16,
-    marginTop: 290,
-    paddingBottom: 10,
+    fontSize: 14,
+    marginTop: 20,
     color: '#94499c',
   },
 });
