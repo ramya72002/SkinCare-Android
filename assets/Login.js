@@ -71,47 +71,51 @@ const Login = ({ navigation }) => {
     }
   };
 
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Image source={require('./1495.gif')} style={styles.loadingImage} />
+      </View>
+    );
+  }
+
   return (
     <Background>
       <View style={styles.container}>
-      <Text style={styles.loginText}>Step into SkinSahitti</Text>
-      <View style={styles.formContainer}>
-          {loading ? (
-            <Image source={require('./1495.gif')} style={styles.loadingImage} />
-          ) : (
-            <>
-              <Text style={styles.welcomeText}>Welcome Back</Text>
-              <Text style={styles.loginPromptText}>Unlock your personalized skin insights</Text>
-              <Field
-                placeholder="Email"
-                keyboardType="email-address"
-                value={email}
-                onChangeText={setEmail}
-              />
-              <Field
-                placeholder="Contact Number"
-                keyboardType="numeric"
-                value={contactNumber}
-                onChangeText={setContactNumber}
-              />
-              <View style={styles.pickerContainer}>
-                <Text style={styles.pickerLabel}>Preferred Language</Text>
-                <Picker
-                  selectedValue={preferredLanguage}
-                  onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
-                  style={styles.picker}
-                >
-                  {/* Language options */}
+        <Text style={styles.loginText}>Step into SkinSahitti</Text>
+        <View style={styles.formContainer}>
+          <Text style={styles.welcomeText}>Welcome Back</Text>
+          <Text style={styles.loginPromptText}>Unlock your personalized skin insights</Text>
+          <Field
+            placeholder="Email"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <Field
+            placeholder="Contact Number"
+            keyboardType="numeric"
+            value={contactNumber}
+            onChangeText={setContactNumber}
+          />
+          <View style={styles.pickerContainer}>
+            <Text style={styles.pickerLabel}>Preferred Language</Text>
+            <Picker
+              selectedValue={preferredLanguage}
+              onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
+              style={styles.picker}
+            >
+              {/* Language options */}
                   <Picker.Item label="Assamese" value="as" />
                   <Picker.Item label="Awadhi" value="awa" />
                   <Picker.Item label="Bengali" value="bn" />
                   <Picker.Item label="Bhojpuri" value="bho" />
                   <Picker.Item label="Chhattisgarhi" value="chg" />
                   <Picker.Item label="Dogri" value="doi" />
-                  <Picker.Item label="English" value="en" />
+              <Picker.Item label="English" value="en" />
                   <Picker.Item label="Gujarati" value="gu" />
                   <Picker.Item label="Haryanvi" value="hne" />
-                  <Picker.Item label="Hindi" value="hi" />
+              <Picker.Item label="Hindi" value="hi" />
                   <Picker.Item label="Kannada" value="kn" />
                   <Picker.Item label="Kashmiri" value="ks" />
                   <Picker.Item label="Konkani" value="kok" />
@@ -128,27 +132,25 @@ const Login = ({ navigation }) => {
                   <Picker.Item label="Tamil" value="ta" />
                   <Picker.Item label="Telugu" value="te" />
                   <Picker.Item label="Urdu" value="ur" />
-                </Picker>
-              </View>
-              <View style={styles.btnContainer}>
-                <Btn
-                  textColor="white"
-                  bgColor={darkGreen}
-                  btnLabel="Login"
-                  Press={handleLogin}
-                />
-                <View style={styles.signupContainer}>
-                  <Text style={styles.signupText}>Don't have an account? </Text>
-                  <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-                    <Text style={styles.signupLinkText}>Signup</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={styles.footer}>
-                <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
-              </View>
-            </>
-          )}
+            </Picker>
+          </View>
+          <View style={styles.btnContainer}>
+            <Btn
+              textColor="white"
+              bgColor={darkGreen}
+              btnLabel="Login"
+              Press={handleLogin}
+            />
+            <View style={styles.signupContainer}>
+              <Text style={styles.signupText}>Don't have an account? </Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+                <Text style={styles.signupLinkText}>Signup</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+          </View>
         </View>
         <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
 
@@ -159,20 +161,17 @@ const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    
     flex: 1,
     width: '200%',
     paddingTop: 40,
-    // paddingBottom: 60, // Ensure space for the footer
   },
   loginText: {
-   
     color: 'white',
-    fontSize: width * 0.1000,
+    fontSize: width * 0.1,
     fontWeight: 'bold',
     marginBottom: height * 0.06,
     paddingLeft: 20,
-    marginTop:height * 0.06,
+    marginTop: height * 0.06,
   },
   welcomeText: {
     paddingLeft: 50,
@@ -194,7 +193,7 @@ const styles = StyleSheet.create({
     paddingTop: height * 0.1,
     paddingLeft: height * 0.04,
     alignItems: 'flex-start',
-    paddingBottom: height * 0.2, // Reduced to make room for footer
+    paddingBottom: height * 0.2,
     flex: 1,
   },
   pickerContainer: {
@@ -230,25 +229,28 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: width * 0.04,
   },
-  loadingImage: {
+  loadingContainer: {
+    flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  loadingImage: {
     width: 100,
     height: 100,
   },
   footer: {
-    marginTop: 80,            // Adjust to give some space between content and footer
+    marginTop: 80,
     alignItems: 'left',
     justifyContent: 'left',
     paddingVertical: 10,
-    paddingLeft:40,
+    paddingLeft: 40,
     color: darkGreen,
     width: '100%',
   },
   footerText: {
-    color: '#555',
-    fontSize: 14,
     color: darkGreen,
+    fontSize: 14,
     fontWeight: 'normal',
     justifyContent: 'center',
   },
