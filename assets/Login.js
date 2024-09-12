@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, StyleSheet, Image, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Background from './Background';
 import Btn from './Btn';
 import { darkGreen } from './Constants';
 import Field from './Field';
 import { Picker } from '@react-native-picker/picker';
-
-const { width, height } = Dimensions.get('window');
+import { scale, verticalScale } from '../utils/scaling';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -81,8 +80,10 @@ const Login = ({ navigation }) => {
 
   return (
     <Background>
-      <View style={styles.container}>
-        <Text style={styles.loginText}>Step into SkinSaathi</Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.loginText}>Step into SkinSaathi</Text>
+        </View>
         <View style={styles.formContainer}>
           <Text style={styles.welcomeText}>Welcome Back</Text>
           <Text style={styles.loginPromptText}>Unlock your personalized skin insights</Text>
@@ -105,33 +106,32 @@ const Login = ({ navigation }) => {
               onValueChange={(itemValue) => setPreferredLanguage(itemValue)}
               style={styles.picker}
             >
-              {/* Language options */}
-                  <Picker.Item label="Assamese" value="as" />
-                  <Picker.Item label="Awadhi" value="awa" />
-                  <Picker.Item label="Bengali" value="bn" />
-                  <Picker.Item label="Bhojpuri" value="bho" />
-                  <Picker.Item label="Chhattisgarhi" value="chg" />
-                  <Picker.Item label="Dogri" value="doi" />
+              <Picker.Item label="Assamese" value="as" />
+              <Picker.Item label="Awadhi" value="awa" />
+              <Picker.Item label="Bengali" value="bn" />
+              <Picker.Item label="Bhojpuri" value="bho" />
+              <Picker.Item label="Chhattisgarhi" value="chg" />
+              <Picker.Item label="Dogri" value="doi" />
               <Picker.Item label="English" value="en" />
-                  <Picker.Item label="Gujarati" value="gu" />
-                  <Picker.Item label="Haryanvi" value="hne" />
+              <Picker.Item label="Gujarati" value="gu" />
+              <Picker.Item label="Haryanvi" value="hne" />
               <Picker.Item label="Hindi" value="hi" />
-                  <Picker.Item label="Kannada" value="kn" />
-                  <Picker.Item label="Kashmiri" value="ks" />
-                  <Picker.Item label="Konkani" value="kok" />
-                  <Picker.Item label="Maithili" value="mai" />
-                  <Picker.Item label="Malayalam" value="ml" />
-                  <Picker.Item label="Manipuri" value="mni" />
-                  <Picker.Item label="Marathi" value="mr" />
-                  <Picker.Item label="Nepali" value="ne" />
-                  <Picker.Item label="Odia" value="or" />
-                  <Picker.Item label="Punjabi" value="pa" />
-                  <Picker.Item label="Sanskrit" value="sa" />
-                  <Picker.Item label="Santali" value="sat" />
-                  <Picker.Item label="Sindhi" value="sd" />
-                  <Picker.Item label="Tamil" value="ta" />
-                  <Picker.Item label="Telugu" value="te" />
-                  <Picker.Item label="Urdu" value="ur" />
+              <Picker.Item label="Kannada" value="kn" />
+              <Picker.Item label="Kashmiri" value="ks" />
+              <Picker.Item label="Konkani" value="kok" />
+              <Picker.Item label="Maithili" value="mai" />
+              <Picker.Item label="Malayalam" value="ml" />
+              <Picker.Item label="Manipuri" value="mni" />
+              <Picker.Item label="Marathi" value="mr" />
+              <Picker.Item label="Nepali" value="ne" />
+              <Picker.Item label="Odia" value="or" />
+              <Picker.Item label="Punjabi" value="pa" />
+              <Picker.Item label="Sanskrit" value="sa" />
+              <Picker.Item label="Santali" value="sat" />
+              <Picker.Item label="Sindhi" value="sd" />
+              <Picker.Item label="Tamil" value="ta" />
+              <Picker.Item label="Telugu" value="te" />
+              <Picker.Item label="Urdu" value="ur" />
             </Picker>
           </View>
           <View style={styles.btnContainer}>
@@ -145,94 +145,89 @@ const Login = ({ navigation }) => {
               <Text style={styles.signupText}>Don't have an account? </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.signupLinkText}>Signup</Text>
-
               </TouchableOpacity>
-
             </View>
-            <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
+          </View>
+          <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
 
-          </View>
-          <View style={styles.footer}>
-          </View>
         </View>
         <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
-
-      </View>
+      </ScrollView>
     </Background>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '200%',
-    paddingTop: 40,
+    flexGrow: 1,
+    paddingHorizontal: scale(20),
+    paddingTop: verticalScale(40),
+  },
+  headerContainer: {
+    alignItems: 'center',
+    marginBottom: verticalScale(20),
   },
   loginText: {
     color: 'white',
-    fontSize: width * 0.1,
+    fontSize: scale(34),
     fontWeight: 'bold',
-    marginBottom: height * 0.06,
-    paddingLeft: 30,
-    marginTop: height * 0.06,
-  },
-  welcomeText: {
-    paddingLeft: 50,
-    fontSize: width * 0.09,
-    color: darkGreen,
-    fontWeight: 'bold',
-    paddingTop: 0,
-  },
-  loginPromptText: {
-    paddingLeft: 20,
-    color: 'black',
-    fontSize: width * 0.045,
-    marginBottom: height * 0.02,
+    textAlign: 'center',
   },
   formContainer: {
     backgroundColor: 'white',
-    width: '90%',
-    borderTopLeftRadius: 180,
-    paddingTop: height * 0.1,
-    paddingLeft: height * 0.04,
-    alignItems: 'flex-start',
-    paddingBottom: height * 0.2,
-    flex: 1,
+    borderTopLeftRadius: 250,
+    paddingTop: verticalScale(70),
+    paddingHorizontal: scale(40),  // Adjusted padding
+    height: verticalScale(700),     // Set a fixed height
+    width: '120%',                   // Adjust the overall width
+    maxWidth: scale(400),           // Maximum width for better control
+    marginRight: scale(15),         // Increase the right margin for extra width
+    alignSelf: 'center',            // Center the form container
+  },
+  
+  welcomeText: {
+    paddingLeft:verticalScale(50),
+    fontSize: scale(35),
+    color: darkGreen,
+    fontWeight: 'bold',
+    marginBottom: verticalScale(10),
+  },
+  loginPromptText: {
+    paddingLeft:verticalScale(50),
+    color: 'black',
+    fontSize: scale(14),
+    marginBottom: verticalScale(16),
   },
   pickerContainer: {
-    width: '100%',
-    marginVertical: height * 0.03,
+    marginVertical: verticalScale(16),
   },
   pickerLabel: {
     color: 'black',
-    fontSize: width * 0.045,
-    marginBottom: height * 0.01,
+    fontSize: scale(14),
+    marginBottom: verticalScale(8),
   },
   picker: {
-    height: height * 0.05,
-    width: '50%',
+    height: verticalScale(40),
+    width: '100%',
   },
   btnContainer: {
-    alignItems: 'left',
-    justifyContent: 'left',
-    width: '100%',
-    paddingLeft: height * 0.05,
-    marginTop: height * 0.03,
+    justifyContent: 'center',
+    alignItems:'center',
+    marginTop: verticalScale(20),
   },
   signupContainer: {
     flexDirection: 'row',
-    justifyContent: 'left',
+    marginTop: verticalScale(16),
+    justifyContent: 'center',
   },
   signupText: {
-    justifyContent: 'center',
-    paddingLeft:10,
-    fontSize: width * 0.04,
+    fontSize: scale(14),
     fontWeight: 'bold',
   },
   signupLinkText: {
     color: darkGreen,
     fontWeight: 'bold',
-    fontSize: width * 0.04,
+    fontSize: scale(14),
   },
   loadingContainer: {
     flex: 1,
@@ -244,21 +239,13 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  footer: {
-    paddingTop: 50,
-    
-    justifyContent: 'center',
-    // paddingVertical: 10,
-    // paddingLeft: 40,
-    color: darkGreen,
-    width: '100%',
-  },
   footerText: {
+    marginTop: verticalScale(100),
+
     color: '#2c3e50',
-    alignItems: 'center',
-    fontSize: 14,
+    fontSize: scale(14),
     fontWeight: 'normal',
-    justifyContent: 'center',
+    textAlign: 'center',
   },
 });
 
