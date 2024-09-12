@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footerText: {
-    marginTop: height * 0.28, // Spacing from other components
+    marginTop: height * 0.18, // Spacing from other components
     fontSize: scaleFont(14),
     color: darkGreen,
     fontWeight: 'bold',

@@ -82,7 +82,7 @@ const Login = ({ navigation }) => {
   return (
     <Background>
       <View style={styles.container}>
-        <Text style={styles.loginText}>Step into SkinSahitti</Text>
+        <Text style={styles.loginText}>Step into SkinSaathi</Text>
         <View style={styles.formContainer}>
           <Text style={styles.welcomeText}>Welcome Back</Text>
           <Text style={styles.loginPromptText}>Unlock your personalized skin insights</Text>
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footer: {
-    marginTop: 80,
+    marginTop: 50,
     alignItems: 'left',
     justifyContent: 'left',
     paddingVertical: 10,
