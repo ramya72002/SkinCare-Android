@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, ActivityIndicator, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Header from '../Header';
 
@@ -11,6 +11,7 @@ const Weather = () => {
   const [uvIndex, setUvIndex] = useState([]);
   const [wind, setWind] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
 
   useEffect(() => {
     if (selectedState) {
@@ -42,6 +43,7 @@ const Weather = () => {
   };
 
   const fetchData = async () => {
+    setIsLoading(true); // Start loading
     const requestBody = JSON.stringify({ state: selectedState, city });
 
     try {
@@ -73,6 +75,8 @@ const Weather = () => {
       setDataFetched(true);
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false); // Stop loading
     }
   };
 
@@ -131,8 +135,16 @@ const Weather = () => {
         <Button title="Fetch Data" onPress={fetchData} />
       </View>
 
-      {dataFetched && (
-        <ScrollView style={styles.dataContainer}>
+      {isLoading ? ( // Show loading indicator while fetching
+        <View style={styles.loadingContainer}>
+          <Image
+            source={require('../assets/1495.gif')} // Use your loading image here
+            style={styles.loadingImage}
+          />
+        </View>
+      ) : (
+        dataFetched && (
+          <ScrollView style={styles.dataContainer}>
           <Text style={styles.title}>Weather Report</Text>
           <View style={styles.table}>
             {weatherData.map((row, index) => (
@@ -165,7 +177,8 @@ const Weather = () => {
               </View>
             ))}
           </View>
-        </ScrollView>
+          </ScrollView>
+        )
       )}
     </View>
   );
@@ -221,6 +234,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'red',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  loadingImage: {
+    width: 100,
+    height: 100,
+  },
+
 });
 
 export default Weather;
