@@ -80,7 +80,7 @@ const Signup = (props) => {
     <Background>
       <View style={styles.container}>
         <Text style={styles.registerText}>Register</Text>
-        <Text style={styles.createAccountText}>Create a new account</Text>
+        <Text style={styles.createAccountText}>Start your skincare revolution today</Text>
         <View style={styles.formContainer}>
           {loading ? (
             <Image source={require('./1495.gif')} style={styles.loadingImage} />
@@ -133,14 +133,15 @@ const styles = StyleSheet.create({
   },
   registerText: {
     color: 'white',
-    fontSize: scaleFont(54), // Scaled font size
+    fontSize: scaleFont(44), // Scaled font size
     fontWeight: 'bold',
-    marginTop: height * 0.10, // 10% of screen height
+    marginTop: height * 0.05, // 10% of screen height
   },
   createAccountText: {
     color: 'white',
     fontSize: scaleFont(18), // Scaled font size
     fontWeight: 'bold',
+    paddingLeft: height * 0.05,
     marginBottom: height * 0.02, // 2% of screen height
   },
   formContainer: {
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footerText: {
-    marginTop: height * 0.24, // Spacing from other components
+    marginTop: height * 0.28, // Spacing from other components
     fontSize: scaleFont(14),
     color: darkGreen,
     fontWeight: 'bold',

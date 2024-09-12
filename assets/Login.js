@@ -74,14 +74,14 @@ const Login = ({ navigation }) => {
   return (
     <Background>
       <View style={styles.container}>
-        <Text style={styles.loginText}>Login</Text>
-        <View style={styles.formContainer}>
+      <Text style={styles.loginText}>Step into SkinSahitti</Text>
+      <View style={styles.formContainer}>
           {loading ? (
             <Image source={require('./1495.gif')} style={styles.loadingImage} />
           ) : (
             <>
               <Text style={styles.welcomeText}>Welcome Back</Text>
-              <Text style={styles.loginPromptText}>Login to your account</Text>
+              <Text style={styles.loginPromptText}>Unlock your personalized skin insights</Text>
               <Field
                 placeholder="Email"
                 keyboardType="email-address"
@@ -150,6 +150,8 @@ const Login = ({ navigation }) => {
             </>
           )}
         </View>
+        <Text style={styles.footerText}>Designed and Developed by Nvision IT</Text>
+
       </View>
     </Background>
   );
@@ -157,17 +159,20 @@ const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    
     flex: 1,
     width: '200%',
     paddingTop: 40,
     // paddingBottom: 60, // Ensure space for the footer
   },
   loginText: {
+   
     color: 'white',
-    fontSize: width * 0.12,
+    fontSize: width * 0.1000,
     fontWeight: 'bold',
-    marginBottom: height * 0.08,
-    paddingLeft: 150,
+    marginBottom: height * 0.06,
+    paddingLeft: 20,
+    marginTop:height * 0.06,
   },
   welcomeText: {
     paddingLeft: 50,
@@ -177,19 +182,19 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   loginPromptText: {
-    paddingLeft: 80,
+    paddingLeft: 20,
     color: 'black',
     fontSize: width * 0.045,
-    marginBottom: height * 0.01,
+    marginBottom: height * 0.02,
   },
   formContainer: {
     backgroundColor: 'white',
-    width: '100%',
+    width: '90%',
     borderTopLeftRadius: 180,
     paddingTop: height * 0.1,
     paddingLeft: height * 0.04,
     alignItems: 'flex-start',
-    paddingBottom: height * 0.1, // Reduced to make room for footer
+    paddingBottom: height * 0.2, // Reduced to make room for footer
     flex: 1,
   },
   pickerContainer: {
@@ -232,13 +237,12 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footer: {
-    marginTop: 100,            // Adjust to give some space between content and footer
+    marginTop: 80,            // Adjust to give some space between content and footer
     alignItems: 'left',
     justifyContent: 'left',
     paddingVertical: 10,
     paddingLeft:40,
     color: darkGreen,
-    backgroundColor: '#f0f0f0',
     width: '100%',
   },
   footerText: {
