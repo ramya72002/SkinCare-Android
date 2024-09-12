@@ -145,10 +145,13 @@ const Login = ({ navigation }) => {
               <Text style={styles.signupText}>Don't have an account? </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.signupLinkText}>Signup</Text>
+
               </TouchableOpacity>
+
             </View>
+            <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
+
           </View>
-          <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
 
         </View>
         <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
@@ -240,7 +243,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   footerText: {
-    marginTop: verticalScale(100),
+    // marginTop: verticalScale(100),
 
     color: '#2c3e50',
     fontSize: scale(14),

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Alert, Dimensions, StyleSheet, Image, Tex
 import Background from './Background';
 import Btn from './Btn';
 import { darkGreen } from './Constants';
+import { scale, verticalScale } from '../utils/scaling';
 
 const { width, height } = Dimensions.get('window');
 
@@ -129,65 +130,59 @@ const Signup = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: width * 0.9, // 90% of screen width
+    width: scale(330), // Scaled width
   },
   registerText: {
     color: 'white',
-    fontSize: scaleFont(44), // Scaled font size
+    fontSize: scaleFont(44), 
     fontWeight: 'bold',
-    marginTop: height * 0.05, // 10% of screen height
+    marginTop: verticalScale(30), // Scaled margin
   },
   createAccountText: {
     color: 'white',
-    fontSize: scaleFont(18), // Scaled font size
+    fontSize: scaleFont(18),
     fontWeight: 'bold',
-    paddingLeft: height * 0.05,
-    marginBottom: height * 0.02, // 2% of screen height
+    marginBottom: verticalScale(10), 
   },
   formContainer: {
     backgroundColor: 'white',
-    height: height * 0.9, // 80% of screen height
-    width: width * 1.09, // 100% of screen width
-    borderTopLeftRadius: 250,
-    paddingTop: height * 0.15, // 10% of screen height
+    height: verticalScale(600), // Scaled height
+    width: scale(440), 
+    borderTopLeftRadius: scale(250), 
+    paddingTop: verticalScale(70), 
     alignItems: 'center',
-    paddingLeft: height * 0.05,
+    paddingLeft: scale(20), 
   },
   inputField: {
-    borderRadius: 100,
+    borderRadius: scale(180),
     color: darkGreen,
-    paddingHorizontal: 15,
-    width: '90%',
-    backgroundColor: 'rgb(220,220, 220)',
-    marginVertical: 10,
-    height: '9%',
+    paddingHorizontal: scale(15),
+    width: '80%',
+    backgroundColor: 'rgb(220,220,220)',
+    marginVertical: verticalScale(10),
+    height: verticalScale(50), 
   },
   loginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: height * 0.0, // 15% of screen height
+    marginTop: verticalScale(15), 
   },
   loginText: {
-    fontSize: scaleFont(16), // Scaled font size
+    fontSize: scaleFont(16),
     fontWeight: 'bold',
   },
   loginLinkText: {
     color: darkGreen,
     fontWeight: 'bold',
-    fontSize: scaleFont(16), // Scaled font size
-  },
-  loadingImage: {
-    justifyContent: 'center',
-    width: 100,
-    height: 100,
+    fontSize: scaleFont(16),
   },
   footerText: {
-    marginTop: height * 0.18, // Spacing from other components
     fontSize: scaleFont(14),
-    color: darkGreen,
+    color: 'grey',
     fontWeight: 'bold',
     textAlign: 'center',
   },
 });
+
 
 export default Signup;
