@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
-const { width, height } = Dimensions.get('window');
+import { scale, verticalScale } from '../../utils/scaling'; // Import scaling utilities
 
 const SkinCancerPrevention = ({ navigation, route }) => {
   const [preferredLanguage, setPreferredLanguage] = useState('en');
@@ -58,28 +58,30 @@ const SkinCancerPrevention = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: verticalScale(0),
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
-    fontSize: 0.04 * height, // 4% of screen height
+    paddingTop: verticalScale(1),
+    fontSize: verticalScale(28),
     fontWeight: 'bold',
-    marginVertical: 0.02 * height, // 2% of screen height
+    marginVertical: verticalScale(20),
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
     alignItems: 'center',
-    paddingBottom: 0.05 * height, // 5% of screen height for bottom padding
+    paddingBottom: verticalScale(30),
   },
   typeButton: {
-    width: 0.8 * width, // 80% of screen width
-    height: 0.25 * height, // 25% of screen height
-    borderRadius: 10,
-    marginBottom: 0.02 * height, // 2% of screen height for margin
+    width: scale(300),
+    height: verticalScale(200),
+    borderRadius: scale(10),
+    marginBottom: verticalScale(20),
     overflow: 'hidden',
   },
   buttonText: {
-    fontSize: 0.03 * height, // 3% of screen height
+    fontSize: verticalScale(20),
     color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageStyle: {
-    borderRadius: 10,
+    borderRadius: scale(10),
     opacity: 0.8,
   },
 });

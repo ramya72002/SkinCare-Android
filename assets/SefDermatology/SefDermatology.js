@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from '../Header';
-const { width, height } = Dimensions.get('window');
+import { scale, verticalScale } from '../../utils/scaling'; // Import scaling utilities
 
 const SefDermatology = ({ navigation, route }) => {
   const [preferredLanguage, setPreferredLanguage] = useState('en');
@@ -85,30 +85,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   mainHeading: {
-    fontSize: width * 0.06, // Adjust to 6% of screen width for better consistency
+    fontSize: scale(28), // Scaled for consistency
     fontWeight: 'bold',
-    marginVertical: height * 0.03, // Adjusted for spacing
+    marginVertical: verticalScale(10), // Adjusted for vertical spacing
     color: '#94499c',
     textAlign: 'center',
   },
   scrollContainer: {
-    padding: width * 0.05, // Padding adjusted to 5% of screen width
+    padding: scale(20), // Scaled padding for uniformity
     alignItems: 'center',
   },
   typeButton: {
-    width: width * 0.9, // 90% of screen width
-    height: height * 0.25, // 25% of screen height
-    borderRadius: 10,
-    marginBottom: height * 0.02, // 2% margin bottom for spacing
+    width: scale(330), // 90% of screen width with scaling
+    height: verticalScale(200), // 25% of screen height with scaling
+    borderRadius: scale(10), // Scaled border radius
+    marginBottom: verticalScale(20), // Scaled vertical margin
     overflow: 'hidden',
   },
   buttonText: {
-    fontSize: width * 0.06, // Adjusted to 5% of screen width
+    fontSize: scale(22), // Scaled font size
     color: 'black',
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom:height * 0.0001,
-    padding: width * 0.02, // Padding adjusted for better readability
+    padding: scale(10), // Scaled padding for better readability
   },
   image: {
     flex: 1,
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageStyle: {
-    borderRadius: 10,
+    borderRadius: scale(10), // Scaled border radius for consistency
     opacity: 0.8,
   },
 });
