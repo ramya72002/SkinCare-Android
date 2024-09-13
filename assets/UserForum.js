@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Header from './Header';
+import { scale, verticalScale } from '../utils/scaling'; // Import the scaling functions
+
 const UserForum = () => {
   const handleJoinGroup = (url) => {
     Linking.openURL(url);
@@ -24,14 +26,14 @@ const UserForum = () => {
         style={styles.linkContainer}
         onPress={() => handleJoinGroup('https://chat.whatsapp.com/LhCirXFH0y53ow87DZBcpO')}
       >
-        <Ionicons name="logo-whatsapp" size={24} color="#25D366" />
+        <Ionicons name="logo-whatsapp" size={scale(24)} color="#25D366" />
         <Text style={styles.linkText}>Group 1: Skincare Tips</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.linkContainer}
         onPress={() => handleJoinGroup('https://chat.whatsapp.com/LhCirXFH0y53ow87DZBcpO')}
       >
-        <Ionicons name="logo-whatsapp" size={24} color="#25D366" />
+        <Ionicons name="logo-whatsapp" size={scale(24)} color="#25D366" />
         <Text style={styles.linkText}>Group 2: Skincare Discussions</Text>
       </TouchableOpacity>
     </View>
@@ -41,45 +43,45 @@ const UserForum = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: scale(10),
     backgroundColor: '#f0f8ff',
   },
   header: {
-    fontSize: 28,
+    fontSize: scale(28),
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: verticalScale(0),
     textAlign: 'center',
-    color: '#94499c', 
+    color: '#94499c',
   },
   quote: {
-    fontSize: 18,
+    fontSize: scale(18),
     fontStyle: 'italic',
-    marginVertical: 10,
+    marginVertical: verticalScale(0),
     textAlign: 'center',
-    color: '#555', 
+    color: '#555',
   },
   subheader: {
-    fontSize: 24,
+    fontSize: scale(24),
     fontWeight: 'bold',
-    marginTop: 30,
-    marginBottom: 10,
+    marginTop: verticalScale(30),
+    marginBottom: verticalScale(10),
     textAlign: 'center',
-    color: '#94499c', 
+    color: '#94499c',
   },
   linkContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
-    marginVertical: 6,
+    padding: scale(12),
+    marginVertical: verticalScale(6),
     backgroundColor: '#e8f4f8',
-    borderRadius: 8,
+    borderRadius: scale(8),
     borderColor: '#94499c',
     borderWidth: 1,
   },
   linkText: {
-    marginLeft: 10,
-    fontSize: 18,
-    color: '#007bff', 
+    marginLeft: scale(10),
+    fontSize: scale(18),
+    color: '#007bff',
   },
 });
 
