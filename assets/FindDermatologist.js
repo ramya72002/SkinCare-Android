@@ -44,7 +44,7 @@ const FindDermatologist = () => {
   const startBannerSlideshow = () => {
     const bannerInterval = setInterval(() => {
       setCurrentBannerIndex(prevIndex => (prevIndex + 1) % bannerImages.length);
-    }, 3000);
+    }, 4000);
     return bannerInterval;
   };
 
