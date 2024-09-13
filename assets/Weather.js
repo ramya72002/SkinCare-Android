@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView, ActivityIndicator, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { scale, verticalScale } from '../utils/scaling'; // Assuming the scaling functions are in a file called scaling.js
 import Header from './Header';
+
 const Weather = () => {
   const [selectedState, setSelectedState] = useState('');
   const [city, setCity] = useState('');
@@ -9,8 +11,8 @@ const Weather = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [uvIndex, setUvIndex] = useState([]);
   const [wind, setWind] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [dataFetched, setDataFetched] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // New state for loading
 
   useEffect(() => {
     if (selectedState) {
@@ -134,48 +136,48 @@ const Weather = () => {
         <Button title="Fetch Data" onPress={fetchData} />
       </View>
 
-      {isLoading ? ( // Show loading indicator while fetching
+      {isLoading ? (
         <View style={styles.loadingContainer}>
           <Image
-            source={require('../assets/1495.gif')} // Use your loading image here
+            source={require('../assets/1495.gif')}
             style={styles.loadingImage}
           />
         </View>
       ) : (
         dataFetched && (
           <ScrollView style={styles.dataContainer}>
-          <Text style={styles.title}>Weather Report</Text>
-          <View style={styles.table}>
-            {weatherData.map((row, index) => (
-              <View key={index} style={styles.row}>
-                {row.map((cell, cellIndex) => (
-                  <Text key={cellIndex} style={styles.cell}>{cell}</Text>
-                ))}
-              </View>
-            ))}
-          </View>
+            <Text style={styles.title}>Weather Report</Text>
+            <View style={styles.table}>
+              {weatherData.map((row, index) => (
+                <View key={index} style={styles.row}>
+                  {row.map((cell, cellIndex) => (
+                    <Text key={cellIndex} style={styles.cell}>{cell}</Text>
+                  ))}
+                </View>
+              ))}
+            </View>
 
-          <Text style={styles.title}>UV Index Report</Text>
-          <View style={styles.table}>
-            {uvIndex.map((row, index) => (
-              <View key={index} style={styles.row}>
-                {row.map((cell, cellIndex) => (
-                  <Text key={cellIndex} style={styles.cell}>{cell}</Text>
-                ))}
-              </View>
-            ))}
-          </View>
+            <Text style={styles.title}>UV Index Report</Text>
+            <View style={styles.table}>
+              {uvIndex.map((row, index) => (
+                <View key={index} style={styles.row}>
+                  {row.map((cell, cellIndex) => (
+                    <Text key={cellIndex} style={styles.cell}>{cell}</Text>
+                  ))}
+                </View>
+              ))}
+            </View>
 
-          <Text style={styles.title}>Wind Direction Report</Text>
-          <View style={styles.table}>
-            {wind.map((row, index) => (
-              <View key={index} style={styles.row}>
-                {row.map((cell, cellIndex) => (
-                  <Text key={cellIndex} style={styles.cell}>{cell}</Text>
-                ))}
-              </View>
-            ))}
-          </View>
+            <Text style={styles.title}>Wind Direction Report</Text>
+            <View style={styles.table}>
+              {wind.map((row, index) => (
+                <View key={index} style={styles.row}>
+                  {row.map((cell, cellIndex) => (
+                    <Text key={cellIndex} style={styles.cell}>{cell}</Text>
+                  ))}
+                </View>
+              ))}
+            </View>
           </ScrollView>
         )
       )}
@@ -190,35 +192,35 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   pickerContainer: {
-    padding: 20,
+    padding: scale(20),
     alignItems: 'center',
   },
   input: {
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
+    borderRadius: scale(5),
+    padding: verticalScale(10),
+    marginBottom: verticalScale(10),
     width: '80%',
   },
   title: {
-    fontSize: 24,
+    fontSize: scale(24),
     fontWeight: 'bold',
-    marginVertical: 10,
+    marginVertical: verticalScale(10),
     textAlign: 'center',
   },
   dataContainer: {
     flex: 1,
     width: '100%',
-    paddingHorizontal: 20,
+    paddingHorizontal: scale(20),
   },
   table: {
     borderWidth: 1,
     borderColor: 'black',
-    marginTop: 10,
+    marginTop: verticalScale(10),
     backgroundColor: 'lightblue',
-    padding: 10,
-    borderRadius: 10,
+    padding: verticalScale(10),
+    borderRadius: scale(10),
     width: '100%',
   },
   row: {
@@ -226,7 +228,7 @@ const styles = StyleSheet.create({
   },
   cell: {
     flex: 1,
-    padding: 10,
+    padding: verticalScale(10),
     textAlign: 'center',
     borderWidth: 1,
     borderColor: 'black',
@@ -240,10 +242,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   loadingImage: {
-    width: 100,
-    height: 100,
+    width: scale(100),
+    height: scale(100),
   },
-
 });
 
 export default Weather;
