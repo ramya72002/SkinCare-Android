@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, ScrollView
 import { Picker } from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './Header';
+import { scale, verticalScale } from '../utils/scaling'; // Import scaling functions
+
 const Profile = ({ navigation }) => {
   const [profileData, setProfileData] = useState(null);
   const [preferredLanguage, setPreferredLanguage] = useState('');
@@ -110,8 +112,6 @@ const Profile = ({ navigation }) => {
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>
-      
-      {/* Footer Section */}
       <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
     </ScrollView>
   );
@@ -124,74 +124,73 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loadingText: {
-    marginTop: 10,
-    fontSize: 16,
+    marginTop: verticalScale(10),
+    fontSize: scale(16),
     color: '#333',
   },
   container: {
     flexGrow: 1,
     backgroundColor: '#f9f9f9',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: scale(20),
+    paddingVertical: verticalScale(10),
   },
   headerText: {
-    fontSize: 28,
+    fontSize: scale(28),
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: verticalScale(15),
     color: '#94499c',
     textAlign: 'center',
   },
   profileContainer: {
     backgroundColor: '#fff',
-    padding: 15,
-    borderRadius: 10,
+    padding: scale(15),
+    borderRadius: scale(10),
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: scale(2) },
     shadowOpacity: 0.1,
-    shadowRadius: 5,
-    marginBottom: 20,
+    shadowRadius: scale(5),
+    marginBottom: verticalScale(20),
   },
   profileItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center', // Align the label and picker vertically
-    marginBottom: 10,
+    alignItems: 'center',
+    marginBottom: verticalScale(10),
   },
   label: {
-    fontSize: 16,
+    fontSize: scale(16),
     color: '#333',
     fontWeight: 'bold',
-    flex: 1, // Make the label take up some space
+    flex: 1,
   },
   pickerContainer: {
-    flex: 2, // Adjust flex value to control the width of the picker relative to the label
+    flex: 2,
     borderWidth: 1,
     borderColor: '#ddd',
-    borderRadius: 5,
-    marginLeft: 10, // Add some spacing between label and picker
+    borderRadius: scale(5),
+    marginLeft: scale(10),
   },
   picker: {
-    height: 40,
+    height: verticalScale(40),
     width: '100%',
   },
-   
   logoutButton: {
     backgroundColor: '#ff6961',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+    paddingVertical: verticalScale(12),
+    paddingHorizontal: scale(20),
+    borderRadius: scale(5),
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: verticalScale(20),
   },
   logoutButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: scale(18),
     fontWeight: 'bold',
   },
   footerText: {
     textAlign: 'center',
-    fontSize: 14,
-    marginTop: 20,
+    fontSize: scale(14),
+    marginTop: verticalScale(20),
     color: '#94499c',
   },
 });

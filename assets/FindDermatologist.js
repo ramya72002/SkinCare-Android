@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Linking, Dimensions } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import Header from './Header';
-import { Ionicons } from '@expo/vector-icons'; // Assuming you use Expo for icons
+import { Ionicons } from '@expo/vector-icons';
+
+const { width, height } = Dimensions.get('window');
+
+const scaleWidth = width / 375; // Assuming base width is 375 (iPhone 6/7/8)
+const scaleHeight = height / 667; // Assuming base height is 667
 
 const FindDermatologist = () => {
   const navigation = useNavigation();
@@ -14,7 +19,7 @@ const FindDermatologist = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
-  const [showBanner, setShowBanner] = useState(true); // State to control banner visibility
+  const [showBanner, setShowBanner] = useState(true);
 
   const bannerImages = [
     require('./dermaBanner/derma.png'),
@@ -48,12 +53,9 @@ const FindDermatologist = () => {
     try {
       const response = await fetch('https://backen-skin-care-app.vercel.app/cities', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: requestBody,
       });
-
       if (response.ok) {
         const data = await response.json();
         setCities(data.cities);
@@ -81,7 +83,7 @@ const FindDermatologist = () => {
         const FindDermatologistData = responseData.true;
         setFindDermatologistData(FindDermatologistData);
         setLoading(false);
-        setShowBanner(false); // Hide banner on data fetch
+        setShowBanner(false);
       } else {
         console.error('Failed to fetch data');
       }
@@ -94,7 +96,7 @@ const FindDermatologist = () => {
 
   return (
     <View style={styles.container}>
-      <Header />
+      {/* <Header /> */}
       
       {showBanner && (
         <Image
@@ -178,20 +180,19 @@ const FindDermatologist = () => {
         {error && <Text style={styles.errorText}>{error}</Text>}
       </ScrollView>
 
-      {/* Footer navigation */}
       <View style={styles.footer}>
         <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Categories')}>
-          <Ionicons name="home" size={24} color="white" />
+          <Ionicons name="home" size={24 * scaleWidth} color="white" />
           <Text style={styles.tabText}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('UserForum')}>
-          <Ionicons name="people-outline" size={24} color="white" />
+          <Ionicons name="people-outline" size={24 * scaleWidth} color="white" />
           <Text style={styles.tabText}>User Forum</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Profile')}>
-        <Ionicons name="person" size={24} color="white" />
-        <Text style={styles.tabText}>Profile</Text>
-      </TouchableOpacity>
+          <Ionicons name="person" size={24 * scaleWidth} color="white" />
+          <Text style={styles.tabText}>Profile</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -202,53 +203,48 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 5,
+    paddingTop: 5 * scaleHeight,
   },
   banner: {
     width: '100%',
-    height: '30%',
-    borderRadius: 10,
-    marginBottom: 20,
+    height: 0.3 * height,
+    borderRadius: 10 * scaleWidth,
+    marginBottom: 20 * scaleHeight,
   },
   mainHeading: {
-    fontSize: 25,
+    fontSize: 21 * scaleWidth,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 10 * scaleHeight,
     color: '#94499c',
   },
   input: {
     width: '80%',
-    marginBottom: 10,
+    marginBottom: 10 * scaleHeight,
     borderColor: '#ccc',
-    borderWidth: 1,
+    borderWidth: 1 * scaleWidth,
     borderColor: 'gray',
-    borderRadius: 15,
-    paddingHorizontal: 10,
+    borderRadius: 15 * scaleWidth,
+    paddingHorizontal: 10 * scaleWidth,
   },
   loader: {
-    marginTop: 20,
+    marginTop: 20 * scaleHeight,
   },
   scrollContainer: {
     width: '100%',
-    marginTop: 50,
+    marginTop: 50 * scaleHeight,
   },
   itemContainer: {
     backgroundColor: '#94499c',
-    color:"white",
-    padding: 15,
-    marginBottom: 10,
-    marginLeft:10,
-    marginRight:10,
-    borderRadius: 15,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    shadowOffset: { width: 10, height: 2 },
+    padding: 15 * scaleWidth,
+    marginBottom: 10 * scaleHeight,
+    marginLeft: 10 * scaleWidth,
+    marginRight: 10 * scaleWidth,
+    borderRadius: 15 * scaleWidth,
   },
   itemText: {
-    fontSize: 15,
-    marginBottom: 5,
-    color:"white",
+    fontSize: 15 * scaleWidth,
+    marginBottom: 5 * scaleHeight,
+    color: "white",
   },
   phoneLink: {
     color: 'blue',
@@ -256,14 +252,14 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
-    marginTop: 10,
+    marginTop: 10 * scaleHeight,
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
-    borderTopWidth: 1,
+    borderTopWidth: 1 * scaleWidth,
     borderTopColor: '#ccc',
     backgroundColor: '#94499c',
     position: 'absolute',
@@ -273,11 +269,11 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 10 * scaleHeight,
   },
   tabText: {
     color: 'white',
-    marginTop: 5,
+    marginTop: 5 * scaleHeight,
   },
 });
 
