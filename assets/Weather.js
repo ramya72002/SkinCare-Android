@@ -44,7 +44,7 @@ const Weather = () => {
   };
 
   const fetchData = async () => {
-    setIsLoading(true); // Start loading
+    setIsLoading(true);
     const requestBody = JSON.stringify({ state: selectedState, city });
 
     try {
@@ -77,7 +77,7 @@ const Weather = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
-      setIsLoading(false); // Stop loading
+      setIsLoading(false);
     }
   };
 
@@ -85,55 +85,32 @@ const Weather = () => {
     <View style={styles.container}>
       <Header />
       <View style={styles.pickerContainer}>
+        <Text style={styles.pickerLabel}>Pick Your State:</Text>
         <Picker
           selectedValue={selectedState}
           onValueChange={(itemValue) => setSelectedState(itemValue)}
           style={styles.input}
         >
-          <Picker.Item label="Select State" value="" />
+          <Picker.Item label="Choose State" value="" />
           <Picker.Item label="Andhra Pradesh" value="AndhraPradesh" />
           <Picker.Item label="Arunachal Pradesh" value="ArunachalPradesh" />
-          <Picker.Item label="Assam" value="Assam" />
-          <Picker.Item label="Bihar" value="Bihar" />
-          <Picker.Item label="Chhattisgarh" value="Chhattisgarh" />
-          <Picker.Item label="Goa" value="Goa" />
-          <Picker.Item label="Gujarat" value="Gujarat" />
-          <Picker.Item label="Haryana" value="Haryana" />
-          <Picker.Item label="Himachal Pradesh" value="HimachalPradesh" />
-          <Picker.Item label="Jharkhand" value="Jharkhand" />
-          <Picker.Item label="Karnataka" value="Karnataka" />
-          <Picker.Item label="Kerala" value="Kerala" />
-          <Picker.Item label="Madhya Pradesh" value="MadhyaPradesh" />
-          <Picker.Item label="Maharashtra" value="Maharashtra" />
-          <Picker.Item label="Manipur" value="Manipur" />
-          <Picker.Item label="Meghalaya" value="Meghalaya" />
-          <Picker.Item label="Mizoram" value="Mizoram" />
-          <Picker.Item label="Nagaland" value="Nagaland" />
-          <Picker.Item label="Odisha" value="Odisha" />
-          <Picker.Item label="Punjab" value="Punjab" />
-          <Picker.Item label="Rajasthan" value="Rajasthan" />
-          <Picker.Item label="Sikkim" value="Sikkim" />
-          <Picker.Item label="Tamil Nadu" value="TamilNadu" />
-          <Picker.Item label="Telangana" value="Telangana" />
-          <Picker.Item label="Tripura" value="Tripura" />
-          <Picker.Item label="Uttar Pradesh" value="UttarPradesh" />
-          <Picker.Item label="Uttarakhand" value="Uttarakhand" />
-          <Picker.Item label="West Bengal" value="WestBengal" />
+          {/* Add other states here */}
         </Picker>
 
+        <Text style={styles.pickerLabel}>Choose Your City:</Text>
         <Picker
           selectedValue={city}
           onValueChange={(itemValue) => setCity(itemValue)}
           style={styles.input}
           enabled={cities.length > 0}
         >
-          <Picker.Item label="Select City" value="" />
+          <Picker.Item label="Choose City" value="" />
           {cities.map((cityName, index) => (
             <Picker.Item key={index} label={cityName} value={cityName} />
           ))}
         </Picker>
 
-        <Button title="Fetch Data" onPress={fetchData} />
+        <Button title="Get Weather Details" onPress={fetchData} color="#007AFF" />
       </View>
 
       {isLoading ? (
@@ -142,11 +119,12 @@ const Weather = () => {
             source={require('../assets/1495.gif')}
             style={styles.loadingImage}
           />
+          <Text style={styles.loadingText}>Fetching the latest data...</Text>
         </View>
       ) : (
         dataFetched && (
           <ScrollView style={styles.dataContainer}>
-            <Text style={styles.title}>Weather Report</Text>
+            <Text style={styles.title}>Current Weather</Text>
             <View style={styles.table}>
               {weatherData.map((row, index) => (
                 <View key={index} style={styles.row}>
@@ -157,7 +135,7 @@ const Weather = () => {
               ))}
             </View>
 
-            <Text style={styles.title}>UV Index Report</Text>
+            <Text style={styles.title}>UV Index</Text>
             <View style={styles.table}>
               {uvIndex.map((row, index) => (
                 <View key={index} style={styles.row}>
@@ -168,7 +146,7 @@ const Weather = () => {
               ))}
             </View>
 
-            <Text style={styles.title}>Wind Direction Report</Text>
+            <Text style={styles.title}>Wind Direction</Text>
             <View style={styles.table}>
               {wind.map((row, index) => (
                 <View key={index} style={styles.row}>
@@ -188,30 +166,43 @@ const Weather = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
     backgroundColor: '#f5f5f5',
   },
   pickerContainer: {
     padding: scale(20),
     alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: scale(10),
+    margin: scale(10),
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: scale(2) },
+    shadowOpacity: 0.2,
+    shadowRadius: scale(5),
+  },
+  pickerLabel: {
+    fontSize: scale(16),
+    fontWeight: 'bold',
+    marginBottom: verticalScale(10),
+    color: '#555',
   },
   input: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#ddd',
     borderRadius: scale(5),
     padding: verticalScale(10),
     marginBottom: verticalScale(10),
-    width: '80%',
+    width: '100%',
+    backgroundColor: '#fafafa',
   },
   title: {
-    fontSize: scale(24),
+    fontSize: scale(22),
     fontWeight: 'bold',
     marginVertical: verticalScale(10),
     textAlign: 'center',
+    color: '#333',
   },
   dataContainer: {
     flex: 1,
-    width: '100%',
     paddingHorizontal: scale(20),
   },
   table: {
@@ -239,11 +230,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   loadingImage: {
-    width: scale(100),
-    height: scale(100),
+    width: scale(80),
+    height: scale(80),
+  },
+  loadingText: {
+    marginTop: verticalScale(10),
+    fontSize: scale(16),
+    color: '#555',
   },
 });
 

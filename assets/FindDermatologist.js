@@ -96,8 +96,6 @@ const FindDermatologist = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Header /> */}
-      
       {showBanner && (
         <Image
           style={styles.banner}
@@ -105,9 +103,10 @@ const FindDermatologist = () => {
           resizeMode="cover"
         />
       )}
-      
-      <Text style={styles.mainHeading}>Find Dermatologist In Single Click</Text>
-      
+
+      <Text style={styles.mainHeading}>Find Your Dermatologist in One Click</Text>
+      <Text style={styles.subHeading}>Choose your state and city to locate nearby specialists.</Text>
+
       <Picker
         selectedValue={selectedState}
         onValueChange={(itemValue) => setSelectedState(itemValue)}
@@ -155,13 +154,15 @@ const FindDermatologist = () => {
           <Picker.Item key={index} label={cityName} value={cityName} />
         ))}
       </Picker>
-      
-      <Button
-        title="Find Nearby Dermatologist"
+
+      <TouchableOpacity
+        style={styles.button}
         onPress={fetchData}
         disabled={!selectedState || !city || loading}
-      />
-      
+      >
+        <Text style={styles.buttonText}>Find Nearby Dermatologist</Text>
+      </TouchableOpacity>
+
       <ScrollView style={styles.scrollContainer}>
         {loading ? (
           <ActivityIndicator size="large" color="#94499c" style={styles.loader} />
@@ -201,9 +202,9 @@ const FindDermatologist = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     paddingTop: 5 * scaleHeight,
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
   },
   banner: {
     width: '100%',
@@ -212,26 +213,48 @@ const styles = StyleSheet.create({
     marginBottom: 20 * scaleHeight,
   },
   mainHeading: {
-    fontSize: 21 * scaleWidth,
+    marginTop: 20 * scaleHeight,
+
+    fontSize: 22 * scaleWidth,
     fontWeight: 'bold',
-    marginBottom: 10 * scaleHeight,
-    color: '#94499c',
+    marginBottom: 5 * scaleHeight,
+    color: '#5a2d82',
+  },
+  subHeading: {
+    fontSize: 16 * scaleWidth,
+    color: '#5a5a5a',
+    marginBottom: 15 * scaleHeight,
+    textAlign: 'center',
+    paddingHorizontal: 20 * scaleWidth,
   },
   input: {
     width: '80%',
     marginBottom: 10 * scaleHeight,
     borderColor: '#ccc',
     borderWidth: 1 * scaleWidth,
-    borderColor: 'gray',
-    borderRadius: 15 * scaleWidth,
+    borderRadius: 10 * scaleWidth,
     paddingHorizontal: 10 * scaleWidth,
+    backgroundColor: '#fff',
+  },
+  button: {
+    backgroundColor: '#94499c',
+    borderRadius: 10 * scaleWidth,
+    paddingVertical: 12 * scaleHeight,
+    paddingHorizontal: 20 * scaleWidth,
+    marginBottom: 20 * scaleHeight,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16 * scaleWidth,
+    fontWeight: '600',
   },
   loader: {
     marginTop: 20 * scaleHeight,
   },
   scrollContainer: {
     width: '100%',
-    marginTop: 50 * scaleHeight,
+    marginTop: 10 * scaleHeight,
+    // marginBottom: 10 * scaleHeight,
   },
   itemContainer: {
     backgroundColor: '#94499c',
@@ -239,12 +262,11 @@ const styles = StyleSheet.create({
     marginBottom: 10 * scaleHeight,
     marginLeft: 10 * scaleWidth,
     marginRight: 10 * scaleWidth,
-    borderRadius: 15 * scaleWidth,
+    borderRadius: 10 * scaleWidth,
   },
   itemText: {
     fontSize: 15 * scaleWidth,
-    marginBottom: 5 * scaleHeight,
-    color: "white",
+    color: 'white',
   },
   phoneLink: {
     color: 'blue',
@@ -253,6 +275,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginTop: 10 * scaleHeight,
+    textAlign: 'center',
   },
   footer: {
     flexDirection: 'row',
@@ -262,18 +285,14 @@ const styles = StyleSheet.create({
     borderTopWidth: 1 * scaleWidth,
     borderTopColor: '#ccc',
     backgroundColor: '#94499c',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
+    paddingVertical: 10 * scaleHeight,
   },
   tab: {
-    flex: 1,
     alignItems: 'center',
-    paddingVertical: 10 * scaleHeight,
   },
   tabText: {
     color: 'white',
-    marginTop: 5 * scaleHeight,
+    fontSize: 12 * scaleWidth,
   },
 });
 

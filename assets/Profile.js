@@ -5,9 +5,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './Header';
 import { scale, verticalScale } from '../utils/scaling'; // Import scaling functions
 
+const { width, height } = Dimensions.get('window');
+const scaleWidth = width / 375; // Assuming base width is 375 (iPhone 6/7/8)
+const scaleHeight = height / 667; // Assuming base height is 667
+
 const Profile = ({ navigation }) => {
   const [profileData, setProfileData] = useState(null);
-  const [preferredLanguage, setPreferredLanguage] = useState('');
+  const [preferredLanguage, setPreferredLanguage] = useState('en');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -65,7 +69,7 @@ const Profile = ({ navigation }) => {
           <Text style={styles.value}>{profileData?.email}</Text>
         </View>
         <View style={styles.profileItem}>
-          <Text style={styles.label}>Contact Number:</Text>
+          <Text style={styles.label}>Phone:</Text>
           <Text style={styles.value}>{profileData?.contactNumber}</Text>
         </View>
         <View style={styles.profileItem}>
@@ -122,6 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f5f5f5',
   },
   loadingText: {
     marginTop: verticalScale(10),
@@ -163,6 +168,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     flex: 1,
   },
+  value: {
+    fontSize: scale(16),
+    color: '#666',
+    flex: 2,
+  },
   pickerContainer: {
     flex: 2,
     borderWidth: 1,
@@ -190,7 +200,7 @@ const styles = StyleSheet.create({
   footerText: {
     textAlign: 'center',
     fontSize: scale(14),
-    marginTop: verticalScale(20),
+    marginBottom: verticalScale(0),
     color: '#94499c',
   },
 });
