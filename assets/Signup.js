@@ -7,8 +7,7 @@ import { scale, verticalScale } from '../utils/scaling';
 
 const { width, height } = Dimensions.get('window');
 
-// Scaling function for responsive font sizes
-const scaleFont = (size) => size * (width / 375); // 375 is the base width used for scaling
+const scaleFont = (size) => size * (width / 375);
 
 const Signup = (props) => {
   const [name, setName] = useState('');
@@ -70,10 +69,9 @@ const Signup = (props) => {
       Alert.alert('Account created');
       props.navigation.navigate('HomepageText');
     } catch (error) {
-      console.error('Error:', error);
       Alert.alert('Error', 'Failed to create account');
     } finally {
-      setLoading(false); // Hide loading GIF
+      setLoading(false);
     }
   };
 
@@ -96,7 +94,7 @@ const Signup = (props) => {
               />
               <TextInput
                 placeholder="Email"
-                keyboardType={'email-address'}
+                keyboardType="email-address"
                 value={email}
                 onChangeText={setEmail}
                 style={styles.inputField}
@@ -104,7 +102,7 @@ const Signup = (props) => {
               />
               <TextInput
                 placeholder="Contact Number"
-                keyboardType={'numeric'}
+                keyboardType="numeric"
                 value={contactNumber}
                 onChangeText={setContactNumber}
                 style={styles.inputField}
@@ -130,19 +128,18 @@ const Signup = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: scale(330), // Scaled width
+    width: '90%',
   },
   registerText: {
-    color: 'white',
-    fontSize: scaleFont(44), 
+    color: '#fff',
+    fontSize: scaleFont(36),
     fontWeight: 'bold',
-    marginTop: verticalScale(30), // Scaled margin
+    marginTop: verticalScale(30),
   },
   createAccountText: {
-    color: 'white',
-    fontSize: scaleFont(18),
-    fontWeight: 'bold',
-    marginBottom: verticalScale(10), 
+    color: '#ccc',
+    fontSize: scaleFont(16),
+    marginBottom: verticalScale(20),
   },
   formContainer: {
     backgroundColor: 'white',
@@ -151,38 +148,37 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: scale(250), 
     paddingTop: verticalScale(70), 
     alignItems: 'center',
-    paddingLeft: scale(20), 
+    paddingLeft: scale(5), 
   },
   inputField: {
-    borderRadius: scale(180),
-    color: darkGreen,
-    paddingHorizontal: scale(15),
-    width: '80%',
-    backgroundColor: 'rgb(220,220,220)',
+    borderRadius: scale(20),
+    backgroundColor: '#e9e9e9',
+    width: '70%',
+    padding: scale(15),
     marginVertical: verticalScale(10),
-    height: verticalScale(50), 
+    fontSize: scaleFont(16),
+    color: '#333',
   },
   loginContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: verticalScale(15), 
+    marginTop: verticalScale(15),
   },
   loginText: {
-    fontSize: scaleFont(16),
-    fontWeight: 'bold',
+    fontSize: scaleFont(14),
+    // color: '#777',
   },
   loginLinkText: {
     color: darkGreen,
     fontWeight: 'bold',
-    fontSize: scaleFont(16),
+    fontSize: scaleFont(14),
   },
   footerText: {
-    fontSize: scaleFont(14),
-    color: 'grey',
-    fontWeight: 'bold',
+    fontSize: scaleFont(12),
+    color: '#aaa',
     textAlign: 'center',
+    marginTop: verticalScale(1),
   },
 });
-
 
 export default Signup;

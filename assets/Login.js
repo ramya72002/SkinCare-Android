@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Alert, StyleSheet, Image, ScrollView } fr
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Background from './Background';
 import Btn from './Btn';
-import { darkGreen } from './Constants';
+import { darkGreen, lightGreen } from './Constants';
 import Field from './Field';
 import { Picker } from '@react-native-picker/picker';
 import { scale, verticalScale } from '../utils/scaling';
@@ -145,16 +145,12 @@ const Login = ({ navigation }) => {
               <Text style={styles.signupText}>Don't have an account? </Text>
               <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                 <Text style={styles.signupLinkText}>Signup</Text>
-
               </TouchableOpacity>
-
             </View>
             <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
 
           </View>
-
         </View>
-        <Text style={styles.footerText}>Designed and Developed by NVision IT</Text>
       </ScrollView>
     </Background>
   );
@@ -172,9 +168,10 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: 'white',
-    fontSize: scale(34),
-    fontWeight: 'bold',
+    fontSize: scale(30),
+    fontWeight: '600',
     textAlign: 'center',
+    letterSpacing: 1,
   },
   formContainer: {
     backgroundColor: 'white',
@@ -184,44 +181,45 @@ const styles = StyleSheet.create({
     height: verticalScale(700),     // Set a fixed height
     width: '120%',                   // Adjust the overall width
     maxWidth: scale(400),           // Maximum width for better control
-    marginRight: scale(15),         // Increase the right margin for extra width
+    marginRight: scale(0),         // Increase the right margin for extra width
     alignSelf: 'center',            // Center the form container
   },
-  
   welcomeText: {
-    paddingLeft:verticalScale(50),
-    fontSize: scale(35),
+    fontSize: scale(28),
     color: darkGreen,
-    fontWeight: 'bold',
+    fontWeight: '600',
     marginBottom: verticalScale(10),
+    textAlign: 'center',
   },
   loginPromptText: {
-    paddingLeft:verticalScale(50),
-    color: 'black',
+    color: '#333',
     fontSize: scale(14),
-    marginBottom: verticalScale(16),
+    marginBottom: verticalScale(20),
+    textAlign: 'center',
   },
   pickerContainer: {
-    marginVertical: verticalScale(16),
+    marginBottom: verticalScale(20),
   },
   pickerLabel: {
-    color: 'black',
-    fontSize: scale(14),
+    color: '#333',
+    fontSize: scale(16),
     marginBottom: verticalScale(8),
   },
   picker: {
-    height: verticalScale(40),
-    width: '100%',
+    width: verticalScale(270),
+    height: verticalScale(30),
+    backgroundColor: '#f0f0f0',
+    borderRadius: 30,
+    elevation: 3,
+    paddingLeft: scale(10),
   },
   btnContainer: {
-    justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     marginTop: verticalScale(20),
   },
   signupContainer: {
     flexDirection: 'row',
-    marginTop: verticalScale(16),
-    justifyContent: 'center',
+    marginTop: verticalScale(10),
   },
   signupText: {
     fontSize: scale(14),
@@ -231,6 +229,7 @@ const styles = StyleSheet.create({
     color: darkGreen,
     fontWeight: 'bold',
     fontSize: scale(14),
+    marginLeft: scale(5),
   },
   loadingContainer: {
     flex: 1,
@@ -241,14 +240,6 @@ const styles = StyleSheet.create({
   loadingImage: {
     width: 100,
     height: 100,
-  },
-  footerText: {
-    // marginTop: verticalScale(100),
-
-    color: '#2c3e50',
-    fontSize: scale(14),
-    fontWeight: 'normal',
-    textAlign: 'center',
   },
 });
 
