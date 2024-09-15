@@ -22,6 +22,9 @@ const Profile = ({ navigation }) => {
           const loginData = JSON.parse(loginDataString);
           setProfileData(loginData);
           setPreferredLanguage(loginData.preferredLanguage || 'en');
+        } else {
+          // No data in AsyncStorage, navigate back to Login
+          navigation.navigate('Login');
         }
       } catch (error) {
         console.error('Failed to load profile data', error);
@@ -31,7 +34,7 @@ const Profile = ({ navigation }) => {
     };
 
     fetchProfileData();
-  }, []);
+  }, [navigation]);
 
   const handleLanguageChange = async (itemValue) => {
     setPreferredLanguage(itemValue);
@@ -53,6 +56,10 @@ const Profile = ({ navigation }) => {
         <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
+  }
+
+  if (!profileData) {
+    return null; // Return null to avoid rendering if there's no profile data
   }
 
   return (

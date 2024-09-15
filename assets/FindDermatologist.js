@@ -112,36 +112,44 @@ const FindDermatologist = () => {
         onValueChange={(itemValue) => setSelectedState(itemValue)}
         style={styles.input}
       >
-        <Picker.Item label="Select State" value="" />
-        <Picker.Item label="Andhra Pradesh" value="AndhraPradesh" />
-        <Picker.Item label="Arunachal Pradesh" value="ArunachalPradesh" />
-        <Picker.Item label="Assam" value="Assam" />
-        <Picker.Item label="Bihar" value="Bihar" />
-        <Picker.Item label="Chhattisgarh" value="Chhattisgarh" />
-        <Picker.Item label="Goa" value="Goa" />
-        <Picker.Item label="Gujarat" value="Gujarat" />
-        <Picker.Item label="Haryana" value="Haryana" />
-        <Picker.Item label="Himachal Pradesh" value="HimachalPradesh" />
-        <Picker.Item label="Jharkhand" value="Jharkhand" />
-        <Picker.Item label="Karnataka" value="Karnataka" />
-        <Picker.Item label="Kerala" value="Kerala" />
-        <Picker.Item label="Madhya Pradesh" value="MadhyaPradesh" />
-        <Picker.Item label="Maharashtra" value="Maharashtra" />
-        <Picker.Item label="Manipur" value="Manipur" />
-        <Picker.Item label="Meghalaya" value="Meghalaya" />
-        <Picker.Item label="Mizoram" value="Mizoram" />
-        <Picker.Item label="Nagaland" value="Nagaland" />
-        <Picker.Item label="Odisha" value="Odisha" />
-        <Picker.Item label="Punjab" value="Punjab" />
-        <Picker.Item label="Rajasthan" value="Rajasthan" />
-        <Picker.Item label="Sikkim" value="Sikkim" />
-        <Picker.Item label="Tamil Nadu" value="Tamil Nadu" />
-        <Picker.Item label="Telangana" value="Telangana" />
-        <Picker.Item label="Tripura" value="Tripura" />
-        <Picker.Item label="Uttar Pradesh" value="UttarPradesh" />
-        <Picker.Item label="Uttarakhand" value="Uttarakhand" />
-        <Picker.Item label="West Bengal" value="WestBengal" />
-      </Picker>
+  <Picker.Item label="Choose State" value="" />
+  <Picker.Item label="Andhra Pradesh" value="AndhraPradesh" />
+  <Picker.Item label="Arunachal Pradesh" value="ArunachalPradesh" />
+  <Picker.Item label="Assam" value="Assam" />
+  <Picker.Item label="Bihar" value="Bihar" />
+  <Picker.Item label="Chhattisgarh" value="Chhattisgarh" />
+  <Picker.Item label="Goa" value="Goa" />
+  <Picker.Item label="Gujarat" value="Gujarat" />
+  <Picker.Item label="Haryana" value="Haryana" />
+  <Picker.Item label="Himachal Pradesh" value="HimachalPradesh" />
+  <Picker.Item label="Jharkhand" value="Jharkhand" />
+  <Picker.Item label="Karnataka" value="Karnataka" />
+  <Picker.Item label="Kerala" value="Kerala" />
+  <Picker.Item label="Madhya Pradesh" value="MadhyaPradesh" />
+  <Picker.Item label="Maharashtra" value="Maharashtra" />
+  <Picker.Item label="Manipur" value="Manipur" />
+  <Picker.Item label="Meghalaya" value="Meghalaya" />
+  <Picker.Item label="Mizoram" value="Mizoram" />
+  <Picker.Item label="Nagaland" value="Nagaland" />
+  <Picker.Item label="Odisha" value="Odisha" />
+  <Picker.Item label="Punjab" value="Punjab" />
+  <Picker.Item label="Rajasthan" value="Rajasthan" />
+  <Picker.Item label="Sikkim" value="Sikkim" />
+  <Picker.Item label="Tamil Nadu" value="TamilNadu" />
+  <Picker.Item label="Telangana" value="Telangana" />
+  <Picker.Item label="Tripura" value="Tripura" />
+  <Picker.Item label="Uttar Pradesh" value="UttarPradesh" />
+  <Picker.Item label="Uttarakhand" value="Uttarakhand" />
+  <Picker.Item label="West Bengal" value="WestBengal" />
+  <Picker.Item label="Andaman and Nicobar Islands" value="AndamanNicobar" />
+  <Picker.Item label="Chandigarh" value="Chandigarh" />
+  <Picker.Item label="Dadra and Nagar Haveli and Daman and Diu" value="DadraNagarHaveliDamanDiu" />
+  <Picker.Item label="Lakshadweep" value="Lakshadweep" />
+  <Picker.Item label="Delhi" value="Delhi" />
+  <Picker.Item label="Puducherry" value="Puducherry" />
+  {/* Add any other union territories or custom regions here */}
+</Picker>
+
       
       <Picker
         selectedValue={city}
