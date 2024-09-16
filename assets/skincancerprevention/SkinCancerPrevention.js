@@ -38,7 +38,7 @@ const SkinCancerPrevention = ({ navigation, route }) => {
           style={styles.typeButton}
           onPress={() => navigation.navigate("TraditionalClothing", { preferredLanguage })}
         >
-          <ImageBackground source={require('./images/ss2.png')} style={styles.image} imageStyle={styles.imageStyle}>
+          <ImageBackground source={require('./images/ss7.png')} style={styles.image} imageStyle={styles.imageStyle}>
             <Text style={styles.buttonText}>Traditional Clothing</Text>
           </ImageBackground>
         </TouchableOpacity>

@@ -190,18 +190,22 @@ const FindDermatologist = () => {
       </ScrollView>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Categories')}>
-          <Ionicons name="home" size={24 * scaleWidth} color="white" />
-          <Text style={styles.tabText}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('UserForum')}>
-          <Ionicons name="people-outline" size={24 * scaleWidth} color="white" />
-          <Text style={styles.tabText}>User Forum</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Profile')}>
-          <Ionicons name="person" size={24 * scaleWidth} color="white" />
-          <Text style={styles.tabText}>Profile</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Categories')}>
+        <Ionicons name="home" size={24} color="white" />
+        <Text style={styles.tabText}>Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Weather')}>
+        <Ionicons name="cloud" size={24} color="white" />
+        <Text style={styles.tabText}>Weather</Text>
+      </TouchableOpacity>
+      {/* <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('FindDermatologist')}>
+        <Ionicons name="search" size={20} color="white" />
+        <Text style={styles.tabText}>Find Dermatologist</Text>
+      </TouchableOpacity> */}
+      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Profile')}>
+        <Ionicons name="person" size={24} color="white" />
+        <Text style={styles.tabText}>Profile</Text>
+      </TouchableOpacity>
       </View>
     </View>
   );
