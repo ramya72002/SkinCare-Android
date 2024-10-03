@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Login from './assets/Login';
+import About from './assets/About';
 import Signup from './assets/Signup';
 import Categories from './assets/Categories';
 import Weather from './assets/Weather';
@@ -47,7 +48,7 @@ const App = () => {
 
       if (loginDataString === "null" || !loginDataString) {
         console.log('Login data is null or not found:', loginDataString);
-        setCurrentRoute('Login');
+        setCurrentRoute('About');
       } else {
         const loginData = JSON.parse(loginDataString);
 
@@ -90,6 +91,8 @@ const App = () => {
           }}
           initialRouteName={currentRoute}
         >
+          <Stack.Screen name="About" component={About} />
+
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="HomepageText" component={HomepageText} />
