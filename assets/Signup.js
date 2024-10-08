@@ -65,10 +65,11 @@ const Signup = (props) => {
         setLoading(false); // Hide loading GIF
         return;
       }
-
-      Alert.alert('Account created');
-      props.navigation.navigate('HomepageText');
-    } catch (error) {
+      props.navigation.navigate('Login', {
+        email: email,
+        contactNumber: contactNumber,
+      });
+          } catch (error) {
       Alert.alert('Error', 'Failed to create account');
     } finally {
       setLoading(false);

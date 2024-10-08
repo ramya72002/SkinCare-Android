@@ -45,7 +45,7 @@ const Profile = ({ navigation }) => {
   };
 
   const handleLogout = async () => {
-    await AsyncStorage.removeItem('loginData');
+    await AsyncStorage.clear(); // Clears all data from AsyncStorage
     navigation.navigate('Login');
   };
 

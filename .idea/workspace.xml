@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="869053c9-a1a7-43fc-a182-5d341abe6b5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/FindDermatologist.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/FindDermatologist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/About.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Signup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

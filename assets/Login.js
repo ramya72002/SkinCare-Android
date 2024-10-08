@@ -1,22 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Alert, StyleSheet, Image, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRoute } from '@react-navigation/native'; // Import useRoute
 import Background from './Background';
 import Btn from './Btn';
-import { darkGreen, lightGreen } from './Constants';
+import { darkGreen } from './Constants';
 import Field from './Field';
 import { Picker } from '@react-native-picker/picker';
 import { scale, verticalScale } from '../utils/scaling';
 
 const Login = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
+  const route = useRoute(); // Get the route
+  const [email, setEmail] = useState(route.params?.email || ''); // Set email from params or default to empty
+  const [contactNumber, setContactNumber] = useState(route.params?.contactNumber || ''); // Set contact number from params or default to empty
   const [name, setName] = useState('');
   const [preferredLanguage, setPreferredLanguage] = useState('en');
   const [loading, setLoading] = useState(false);
 
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validateContactNumber = (number) => /^\d+$/.test(number);
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const storedData = await AsyncStorage.getItem('loginData');
+        if (storedData) {
+          const userData = JSON.parse(storedData);
+          // Autofill form fields with stored data
+          setEmail(userData.email);
+          setContactNumber(userData.contactNumber);
+          setName(userData.name);
+          setPreferredLanguage(userData.preferredLanguage);
+        }
+      } catch (error) {
+        console.error('Error loading user data:', error);
+      }
+    };
+
+    loadUserData();
+  }, []);
 
   const handleLogin = async () => {
     if (!email || !contactNumber) {
@@ -24,18 +43,7 @@ const Login = ({ navigation }) => {
       return;
     }
 
-    if (!validateEmail(email)) {
-      Alert.alert('Error', 'Invalid email format');
-      return;
-    }
-
-    if (!validateContactNumber(contactNumber)) {
-      Alert.alert('Error', 'Contact number must contain only digits');
-      return;
-    }
-
     setLoading(true);
-
     const loginData = { email, contactNumber, preferredLanguage, name };
 
     try {
@@ -59,6 +67,8 @@ const Login = ({ navigation }) => {
         name: responseData.name,
         preferredLanguage: responseData.preferredLanguage,
       };
+
+      // Save user data to AsyncStorage for future login auto-fill
       await AsyncStorage.setItem('loginData', JSON.stringify(userData));
 
       navigation.navigate('Categories', { preferredLanguage: userData.preferredLanguage });
