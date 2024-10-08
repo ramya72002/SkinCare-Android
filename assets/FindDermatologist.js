@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView, Image, ActivityIndicator, TouchableOpacity, Linking, Dimensions } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
-import Header from './Header';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
-const scaleWidth = width / 375; // Assuming base width is 375 (iPhone 6/7/8)
-const scaleHeight = height / 667; // Assuming base height is 667
+const scaleWidth = width / 375;
+const scaleHeight = height / 667;
 
 const FindDermatologist = () => {
   const navigation = useNavigation();

@@ -25,7 +25,7 @@ const About = () => {
       <Text style={styles.description}>
         I am a current medical student and aspiring dermatologist with a passion for making a difference in cutaneous health! 
         My journey through medicine has shown me the critical importance of accessible dermatological care. 
-        That’s why I’m excited to introduce SkinSaathi—a comprehensive mobile application that addresses the unique dermatological 
+        That’s why I’m excited to introduce SkinSaathi — A comprehensive mobile application that addresses the unique dermatological 
         needs of India’s diverse population.
       </Text>
       <Text style={styles.description}>
@@ -44,7 +44,7 @@ const About = () => {
         style={styles.signUpButton}
         onPress={() => navigation.navigate('Signup')} // Navigate to SignUp screen
       >
-        <Text style={styles.signUpButtonText}>Sign Up</Text>
+        <Text style={styles.signUpButtonText}>Create An Account</Text>
       </TouchableOpacity>
     </ScrollView>
   );
