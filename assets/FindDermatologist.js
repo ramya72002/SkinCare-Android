@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 const { width, height } = Dimensions.get('window');
 
 const scaleWidth = width / 375;
-const scaleHeight = height / 667; 
+const scaleHeight = height / 667;
 
 const FindDermatologist = () => {
   const navigation = useNavigation();
@@ -111,7 +111,7 @@ const FindDermatologist = () => {
         onValueChange={(itemValue) => setSelectedState(itemValue)}
         style={styles.input}
       >
-  <Picker.Item label="Choose State" value="" />
+        <Picker.Item label="Choose State" value="" />
   <Picker.Item label="Andhra Pradesh" value="AndhraPradesh" />
   <Picker.Item label="Arunachal Pradesh" value="ArunachalPradesh" />
   <Picker.Item label="Assam" value="Assam" />
@@ -147,7 +147,7 @@ const FindDermatologist = () => {
   <Picker.Item label="Delhi" value="Delhi" />
   <Picker.Item label="Puducherry" value="Puducherry" />
   {/* Add any other union territories or custom regions here */}
-</Picker>
+      </Picker>
 
       
       <Picker
@@ -171,40 +171,36 @@ const FindDermatologist = () => {
       </TouchableOpacity>
 
       <ScrollView style={styles.scrollContainer}>
-  {loading ? (
-    <ActivityIndicator size="large" color="#94499c" style={styles.loader} />
-  ) : (
-    FindDermatologistData.filter(item => item.phone).map((item, index) => (
-      <View key={index} style={styles.itemContainer}>
-        <Text style={styles.itemText}>Name: {item.name}</Text>
-        <Text style={styles.itemText}>Address: {item.address}</Text>
-        <Text style={styles.itemText}>City: {item.city}</Text>
-        <TouchableOpacity onPress={() => Linking.openURL(`tel:${item.phone}`)}>
-          <Text style={[styles.itemText, styles.phoneLink]}>Phone: {item.phone}</Text>
-        </TouchableOpacity>
-      </View>
-    ))
-  )}
-  {error && <Text style={styles.errorText}>{error}</Text>}
-</ScrollView>
+        {loading ? (
+          <ActivityIndicator size="large" color="#94499c" style={styles.loader} />
+        ) : (
+          FindDermatologistData.filter(item => item.phone).map((item, index) => (
+            <View key={index} style={styles.itemContainer}>
+              <Text style={[styles.itemText, styles.doctorName]}>Name: {item.name}</Text>
+              <Text style={styles.itemText}>Address: {item.address}</Text>
+              <Text style={styles.itemText}>City: {item.city}</Text>
+              <TouchableOpacity onPress={() => Linking.openURL(`tel:${item.phone}`)}>
+                <Text style={[styles.itemText, styles.phoneLink]}>Phone: {item.phone}</Text>
+              </TouchableOpacity>
+            </View>
+          ))
+        )}
+        {error && <Text style={styles.errorText}>{error}</Text>}
+      </ScrollView>
 
       <View style={styles.footer}>
-      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Categories')}>
-        <Ionicons name="home" size={24} color="white" />
-        <Text style={styles.tabText}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Weather')}>
-        <Ionicons name="cloud" size={24} color="white" />
-        <Text style={styles.tabText}>Weather</Text>
-      </TouchableOpacity>
-      {/* <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('FindDermatologist')}>
-        <Ionicons name="search" size={20} color="white" />
-        <Text style={styles.tabText}>Find Dermatologist</Text>
-      </TouchableOpacity> */}
-      <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Profile')}>
-        <Ionicons name="person" size={24} color="white" />
-        <Text style={styles.tabText}>Profile</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Categories')}>
+          <Ionicons name="home" size={24} color="white" />
+          <Text style={styles.tabText}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Weather')}>
+          <Ionicons name="cloud" size={24} color="white" />
+          <Text style={styles.tabText}>Weather</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Profile')}>
+          <Ionicons name="person" size={24} color="white" />
+          <Text style={styles.tabText}>Profile</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -225,11 +221,10 @@ const styles = StyleSheet.create({
   },
   mainHeading: {
     marginTop: 20 * scaleHeight,
-
     fontSize: 22 * scaleWidth,
     fontWeight: 'bold',
     marginBottom: 5 * scaleHeight,
-    color: '#5a2d82',
+    color: '#94499c',
   },
   subHeading: {
     fontSize: 16 * scaleWidth,
@@ -248,7 +243,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   button: {
-    backgroundColor: '#94499c',
+    backgroundColor: '#94499c', // Changed to a lighter shade
     borderRadius: 10 * scaleWidth,
     paddingVertical: 12 * scaleHeight,
     paddingHorizontal: 20 * scaleWidth,
@@ -265,10 +260,9 @@ const styles = StyleSheet.create({
   scrollContainer: {
     width: '100%',
     marginTop: 10 * scaleHeight,
-    // marginBottom: 10 * scaleHeight,
   },
   itemContainer: {
-    backgroundColor: '#94499c',
+    backgroundColor: '#e6e6e6', // Lighter background color for item containers
     padding: 15 * scaleWidth,
     marginBottom: 10 * scaleHeight,
     marginLeft: 10 * scaleWidth,
@@ -277,7 +271,12 @@ const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 15 * scaleWidth,
-    color: 'white',
+    color: '#333', // Darker text color for contrast
+  },
+  doctorName: {
+    fontSize: 16 * scaleWidth,
+    fontWeight: 'bold', // Bold for doctor's name
+    color: '#94499c', // Color for doctor's name
   },
   phoneLink: {
     color: 'blue',
@@ -285,26 +284,23 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
-    marginTop: 10 * scaleHeight,
     textAlign: 'center',
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%',
-    borderTopWidth: 1 * scaleWidth,
-    borderTopColor: '#ccc',
     backgroundColor: '#94499c',
     paddingVertical: 10 * scaleHeight,
+    width: '100%',
   },
   tab: {
     alignItems: 'center',
   },
   tabText: {
     color: 'white',
-    fontSize: 12 * scaleWidth,
-  },
+    fontSize: 14 * scaleWidth,
+  },                                  
 });
 
 export default FindDermatologist;
