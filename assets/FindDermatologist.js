@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 const { width, height } = Dimensions.get('window');
 
 const scaleWidth = width / 375;
-const scaleHeight = height / 667;
+const scaleHeight = height / 667; 
 
 const FindDermatologist = () => {
   const navigation = useNavigation();
@@ -171,22 +171,22 @@ const FindDermatologist = () => {
       </TouchableOpacity>
 
       <ScrollView style={styles.scrollContainer}>
-        {loading ? (
-          <ActivityIndicator size="large" color="#94499c" style={styles.loader} />
-        ) : (
-          FindDermatologistData.map((item, index) => (
-            <View key={index} style={styles.itemContainer}>
-              <Text style={styles.itemText}>Name: {item.name}</Text>
-              <Text style={styles.itemText}>Address: {item.address}</Text>
-              <Text style={styles.itemText}>City: {item.city}</Text>
-              <TouchableOpacity onPress={() => Linking.openURL(`tel:${item.phone}`)}>
-                <Text style={[styles.itemText, styles.phoneLink]}>Phone: {item.phone}</Text>
-              </TouchableOpacity>
-            </View>
-          ))
-        )}
-        {error && <Text style={styles.errorText}>{error}</Text>}
-      </ScrollView>
+  {loading ? (
+    <ActivityIndicator size="large" color="#94499c" style={styles.loader} />
+  ) : (
+    FindDermatologistData.filter(item => item.phone).map((item, index) => (
+      <View key={index} style={styles.itemContainer}>
+        <Text style={styles.itemText}>Name: {item.name}</Text>
+        <Text style={styles.itemText}>Address: {item.address}</Text>
+        <Text style={styles.itemText}>City: {item.city}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL(`tel:${item.phone}`)}>
+          <Text style={[styles.itemText, styles.phoneLink]}>Phone: {item.phone}</Text>
+        </TouchableOpacity>
+      </View>
+    ))
+  )}
+  {error && <Text style={styles.errorText}>{error}</Text>}
+</ScrollView>
 
       <View style={styles.footer}>
       <TouchableOpacity style={styles.tab} onPress={() => navigation.navigate('Categories')}>
