@@ -17,7 +17,7 @@ const About = () => {
       <View style={styles.contentContainer}>
         <View style={styles.imageContainer}>
           <Image
-            source={require('./anikaimage-min.jpg')} // Replace with the correct path to the image
+            source={require('./anika1.jpg')} // Replace with the correct path to the image
             style={styles.image}
           />
         </View>
